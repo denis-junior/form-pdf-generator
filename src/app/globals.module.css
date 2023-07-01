@@ -1,0 +1,43 @@
+.navColor {
+  background-color: #00008B;
+  border-bottom: #FF0000 4px solid;
+}
+
+.initialPage {
+  /* background-color: #3838d8; */
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 800px)
+{
+  .fixedHeight
+   {
+    height: 7rem;
+   }
+}
+@media (max-width: 600px)
+{
+  .breakCard
+   {
+    background-color: red;
+    color: green;
+    display: flex;
+    flex-direction: column;
+    /* height: 100%; */
+    gap: .7rem;
+
+    /* height: 7rem; */
+   }
+   .fixedHeight
+   {
+    width: 90%;
+    height: auto;
+   }
+
+   .popover {
+    flex-wrap: wrap;
+   }
+}
