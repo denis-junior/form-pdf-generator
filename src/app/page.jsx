@@ -61,14 +61,6 @@ export default function Home() {
   };
   const openDecFeiMil = Boolean(decFeiMil);
 
-
-
-
-
-
-
-
-
   const handleFormDestProCur = (event) => {
     setFormDestProCur(event.currentTarget);
   };
@@ -221,7 +213,7 @@ export default function Home() {
                       REQUERIMENTOS FEITOS PELO MILITAR
                     </Button>
                     <Button
-                      className={'ms-2'}
+                      className={"ms-2"}
                       aria-describedby={5}
                       variant="contained"
                       onClick={handleDecFeiMil}
@@ -240,13 +232,18 @@ export default function Home() {
                   }}
                 >
                   <Typography sx={{ p: 2 }}>
-                  <Button
-                      className={'ms-2'}
+                    <Button
+                      className={"ms-2"}
                       aria-describedby={5}
                       variant="contained"
                       // onClick={handleDecFeiMil}
                     >
-                  REQUERIMENTOS DIVERSOS DE INTERESSE DO DEPENDENTE
+                      <Link
+                        style={{ color: "white", textDecoration: "none" }}
+                        href={"formDestDepend/reqDivIntDep"}
+                      >
+                        REQUERIMENTOS DIVERSOS DE INTERESSE DO DEPENDENTE
+                      </Link>
                     </Button>
                   </Typography>
                 </Popover>
@@ -262,7 +259,10 @@ export default function Home() {
                   }}
                   // className="w-75"
                 >
-                  <Typography sx={{ p: 2 }} className={`d-flex ${style.popover}`}>
+                  <Typography
+                    sx={{ p: 2 }}
+                    className={`d-flex ${style.popover}`}
+                  >
                     <Button
                       className="ms-2 mb-3 w-100"
                       aria-describedby={3}
@@ -270,10 +270,59 @@ export default function Home() {
                       variant="contained"
                       // onClick={() => alert("going route")}
                     >
-                      <Link style={{color: "white", textDecoration: "none"}} href={'/formDestProcCur/reqFeitProcCur/reqDivIntProcCur'} >
+                      <Link
+                        style={{ color: "white", textDecoration: "none" }}
+                        href={
+                          "/formDestProcCur/reqFeitProcCur/reqDivIntProcCur"
+                        }
+                      >
+                        REQUERIMENTOS DIVERSOS DE INTERESSE DO PROCURADOR OU
+                        CURADOR
+                      </Link>
+                    </Button>
 
-                      REQUERIMENTOS DIVERSOS DE INTERESSE DO PROCURADOR OU
-                      CURADOR
+                    <Button
+                      className="ms-2 mb-3 w-100"
+                      aria-describedby={3}
+                      // className="w-25"
+                      variant="contained"
+                      // onClick={() => alert("going route")}
+                    >
+                      <Link
+                        style={{ color: "white", textDecoration: "none" }}
+                        href={"formDestProcCur/reqFeitProcCur/reqRevalCartFun"}
+                      >
+                        REQUERIMENTO PARA REVALIDAÇÃO DO CARTÃO FUNSAU
+                      </Link>
+                    </Button>
+
+                    <Button
+                      className="ms-2 mb-3 w-100"
+                      aria-describedby={3}
+                      // className="w-25"
+                      variant="contained"
+                      // onClick={() => alert("going route")}
+                    >
+                      <Link
+                        style={{ color: "white", textDecoration: "none" }}
+                        href={"formDestProcCur/reqFeitProcCur/reqIncMilEst"}
+                      >
+                        REQUERIMENTO DE INCLUSÃO DE MILITAR ESTADUAL
+                      </Link>
+                    </Button>
+
+                    <Button
+                      className="ms-2 mb-3 w-100"
+                      aria-describedby={3}
+                      // className="w-25"
+                      variant="contained"
+                      // onClick={() => alert("going route")}
+                    >
+                      <Link
+                        style={{ color: "white", textDecoration: "none" }}
+                        href={"formDestProcCur/reqFeitProcCur/reqInclusaoDep"}
+                      >
+                        REQUERIMENTO DE INCLUSÃO DE DEPENDENTE
                       </Link>
                     </Button>
 
@@ -284,7 +333,12 @@ export default function Home() {
                       variant="contained"
                       onClick={() => alert("going route")}
                     >
-                      REQUERIMENTO PARA REVALIDAÇÃO DO CARTÃO FUNSAU
+                      <Link
+                        style={{ color: "white", textDecoration: "none" }}
+                        href={"formDestProcCur/reqFeitProcCur/reqExtFinImpRend"}
+                      >
+                        REQUERIMENTO DE EXTRATO PARA FINS DE IMPOSTO DE RENDA
+                      </Link>
                     </Button>
 
                     <Button
@@ -294,41 +348,16 @@ export default function Home() {
                       variant="contained"
                       onClick={() => alert("going route")}
                     >
-                      REQUERIMENTO DE INCLUSÃO DE MILITAR ESTADUAL
-                    </Button>
-
-                    <Button
-                      className="ms-2 mb-3 w-100"
-                      aria-describedby={3}
-                      // className="w-25"
-                      variant="contained"
-                      onClick={() => alert("going route")}
-                    >
-                      REQUERIMENTO DE INCLUSÃO DE DEPENDENTE
-                    </Button>
-
-                    <Button
-                      className="ms-2 mb-3 w-100"
-                      aria-describedby={3}
-                      // className="w-25"
-                      variant="contained"
-                      onClick={() => alert("going route")}
-                    >
-                      REQUERIMENTO DE EXTRATO PARA FINS DE IMPOSTO DE RENDA
-                    </Button>
-
-                    <Button
-                      className="ms-2 mb-3 w-100"
-                      aria-describedby={3}
-                      // className="w-25"
-                      variant="contained"
-                      onClick={() => alert("going route")}
-                    >
-                      REQUERIMENTO DE EXCLUSÃO
+                      <Link
+                        style={{ color: "white", textDecoration: "none" }}
+                        href={"formDestProcCur/reqFeitProcCur/reqExc"}
+                      >
+                        REQUERIMENTO DE EXCLUSÃO
+                      </Link>
                     </Button>
                   </Typography>
                 </Popover>
-                
+
                 <Popover
                   open={openReqMil}
                   anchorEl={reqMil}
@@ -339,64 +368,97 @@ export default function Home() {
                   }}
                   // className="w-50"
                 >
-                  <Typography sx={{ p: 2 }} className={`d-flex ${style.popover}`}>
+                  <Typography
+                    sx={{ p: 2 }}
+                    className={`d-flex ${style.popover}`}
+                  >
                     <Button
                       className="ms-2 w-100 mb-3"
                       aria-describedby={3}
                       // className="w-25"
                       variant="contained"
-                      onClick={() => alert("going route")}
                     >
-                      REQUERIMENTOS DIVERSOS
+                      <Link
+                        style={{ color: "white", textDecoration: "none" }}
+                        href={"formDestMil/reqFeitMil/reqDiv"}
+                      >
+                        REQUERIMENTOS DIVERSOS
+                      </Link>
                     </Button>
                     <Button
                       className="ms-2 w-100 mb-3"
                       aria-describedby={3}
                       // className="w-25"
                       variant="contained"
-                      onClick={() => alert("going route")}
+                      // onClick={() => alert("Rev Funs")}
                     >
-                      REQUERIMENTO DE REVALIDAÇÃO DO CARTÃO FUNSAU
+                      <Link
+                        style={{ color: "white", textDecoration: "none" }}
+                        href={"formDestMil/reqFeitMil/reqRevalCartFuns"}
+                      >
+                        REQUERIMENTO DE REVALIDAÇÃO DO CARTÃO FUNSAU
+                      </Link>
                     </Button>
                     <Button
                       className="ms-2 w-100 mb-3"
                       aria-describedby={3}
                       // className="w-25"
                       variant="contained"
-                      onClick={() => alert("going route")}
+                      onClick={() => alert("Req Exc")}
                     >
-                      REQUERIMENTO DE EXCLUSÃO
+                      <Link
+                        style={{ color: "white", textDecoration: "none" }}
+                        href={
+                          "/formDestProcCur/reqFeitProcCur/reqDivIntProcCur"
+                        }
+                      >
+                        REQUERIMENTO DE EXCLUSÃO
+                      </Link>
                     </Button>
                     <Button
                       className="ms-2 w-100 mb-3"
                       aria-describedby={3}
                       // className="w-25"
                       variant="contained"
-                      onClick={() => alert("going route")}
+                      onClick={() => alert("Impost Rend")}
                     >
-                      REQUERIMENTO DE EXTRATO PARA FINS DE IMPOSTO DE RENDA
+                      <Link
+                        style={{ color: "white", textDecoration: "none" }}
+                        href={"formDestMil/reqFeitMil/reqExtFinsImpRend"}
+                      >
+                        REQUERIMENTO DE EXTRATO PARA FINS DE IMPOSTO DE RENDA
+                      </Link>
                     </Button>
                     <Button
                       className="ms-2 w-100 mb-3"
                       aria-describedby={3}
                       // className="w-25"
                       variant="contained"
-                      onClick={() => alert("going route")}
+                      onClick={() => alert("in Contri")}
                     >
-                      REQUERIMENTO DE INCLUSÃO DE CONTRIBUINTE
+                      <Link
+                        style={{ color: "white", textDecoration: "none" }}
+                        href={"formDestMil/reqFeitMil/ReqIncCont"}
+                      >
+                        REQUERIMENTO DE INCLUSÃO DE CONTRIBUINTE
+                      </Link>
                     </Button>
-                    <Button 
+                    <Button
                       className="ms-2 w-100 mb-3"
                       aria-describedby={3}
                       // className="w-25"
                       variant="contained"
-                      onClick={() => alert("going route")}
+                      onClick={() => alert("ultima")}
                     >
-                      REQUERIMENTO DE INCLUSÃO DE DEPENDENTE
+                      <Link
+                        style={{ color: "white", textDecoration: "none" }}
+                        href={"formDestMil/reqFeitMil/ReqIncDep"}
+                      >
+                        REQUERIMENTO DE INCLUSÃO DE DEPENDENTE
+                      </Link>
                     </Button>
                   </Typography>
                 </Popover>
-
 
                 <Popover
                   open={openReqProCur}
@@ -412,9 +474,16 @@ export default function Home() {
                       aria-describedby={3}
                       // className="w-25"
                       variant="contained"
-                      onClick={() => alert("going route")}
+                      onClick={() =>
+                        alert("DECLARAÇÃO DE DEPENDÊNCIA ECONÔMICA")
+                      }
                     >
-                      DECLARAÇÃO DE DEPENDÊNCIA ECONÔMICA
+                      <Link
+                        style={{ color: "white", textDecoration: "none" }}
+                        href={"formDestProcCur/decFeitProcCur/decDependEcon"}
+                      >
+                        DECLARAÇÃO DE DEPENDÊNCIA ECONÔMICA
+                      </Link>
                     </Button>
                   </Typography>
                 </Popover>
@@ -432,13 +501,17 @@ export default function Home() {
                       aria-describedby={3}
                       // className="w-25"
                       variant="contained"
-                      onClick={() => alert("going route")}
+                      // onClick={() => alert("aqui")}
                     >
-                      DECLARAÇÃO DE NÃO RECEBIMENTO DE RENDIMENTOS
+                      <Link
+                        style={{ color: "white", textDecoration: "none" }}
+                        href={"formDestMil/decFeitMil/decNaoRecRend"}
+                      >
+                        DECLARAÇÃO DE NÃO RECEBIMENTO DE RENDIMENTOS
+                      </Link>
                     </Button>
                   </Typography>
                 </Popover>
-
               </CardActions>
             </Card>
           </Col>
