@@ -24,7 +24,7 @@ import {
 import { Col, Form, Row } from "react-bootstrap";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Cancel, Delete, Person } from "@mui/icons-material";
-const reqRevalCartFun = () => {
+const ReqRevalCartFun = () => {
   // changeTabs
   const [value, setValue] = useState("1");
 
@@ -608,4 +608,4 @@ const reqRevalCartFun = () => {
   );
 };
 
-export default reqRevalCartFun;
+export default ReqRevalCartFun;

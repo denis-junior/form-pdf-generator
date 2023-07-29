@@ -38,6 +38,13 @@ const ReqInclusaoDep = () => {
   const [addDependent, setAddDependent] = useState(false);
   const [noDependents, setNoDependents] = useState(false);
 
+  // PCD if yes
+  const [isPcd, setIsPcd] = useState(false);
+  // Estudante if yes
+  const [isStudent, setIsStudent] = useState(false);
+  // Plano Saude if yes
+  const [isHealthPlan, setIsHealthPlan] = useState(false);
+
   const handleChangeValuesPrincipal = (event) => {
     const { name, value } = event.target;
     console.log("name ", event.target.name);
@@ -621,86 +628,93 @@ const ReqInclusaoDep = () => {
                     </Row>
                     <Row>
                       {/* PCD IF YES*/}
-                      <Col>
-                        <FormControl>
-                          <FormLabel id="demo-controlled-radio-buttons-group">
-                            Tipo PCD
-                          </FormLabel>
-                          <RadioGroup
-                            row
-                            aria-labelledby="demo-controlled-radio-buttons-group"
-                            name="tipoPcdDependente"
-                            onChange={handleChangeValuesDependent}
-                            value={dependent.tipoPcdDependente || ""}
-                          >
-                            <FormControlLabel
-                              value="FISICA"
-                              control={<Radio />}
-                              label="FISICA"
-                            />
-                            <FormControlLabel
-                              value="MENTAL"
-                              control={<Radio />}
-                              label="MENTAL"
-                            />
-                            <FormControlLabel
-                              value="AUDITIVA"
-                              control={<Radio />}
-                              label="AUDITIVA"
-                            />
-                            <FormControlLabel
-                              value="MÚLTIPLA"
-                              control={<Radio />}
-                              label="MÚLTIPLA"
-                            />
-                          </RadioGroup>
-                        </FormControl>
-                      </Col>
+                      {dependent.pcdDependente === "Sim" && (
+                        <Col>
+                          <FormControl>
+                            <FormLabel id="demo-controlled-radio-buttons-group">
+                              Tipo PCD
+                            </FormLabel>
+                            <RadioGroup
+                              row
+                              aria-labelledby="demo-controlled-radio-buttons-group"
+                              name="tipoPcdDependente"
+                              onChange={handleChangeValuesDependent}
+                              value={dependent.tipoPcdDependente || ""}
+                            >
+                              <FormControlLabel
+                                value="FISICA"
+                                control={<Radio />}
+                                label="FISICA"
+                              />
+                              <FormControlLabel
+                                value="MENTAL"
+                                control={<Radio />}
+                                label="MENTAL"
+                              />
+                              <FormControlLabel
+                                value="AUDITIVA"
+                                control={<Radio />}
+                                label="AUDITIVA"
+                              />
+                              <FormControlLabel
+                                value="MÚLTIPLA"
+                                control={<Radio />}
+                                label="MÚLTIPLA"
+                              />
+                            </RadioGroup>
+                          </FormControl>
+                        </Col>
+                      )}
                       {/* Estudante IF YES */}
-                      <Col>
-                        <FormControl>
-                          <FormLabel id="demo-controlled-radio-buttons-group">
-                            Nível Estudante
-                          </FormLabel>
-                          <RadioGroup
-                            row
-                            aria-labelledby="demo-controlled-radio-buttons-group"
-                            name="nivelEstudanteDependente"
-                            onChange={handleChangeValuesDependent}
-                            value={dependent.nivelEstudanteDependente || ""}
-                          >
-                            <FormControlLabel
-                              value="FUNDAMENTAL"
-                              control={<Radio />}
-                              label="FUNDAMENTAL"
-                            />
-                            <FormControlLabel
-                              value="MÉDIO"
-                              control={<Radio />}
-                              label="MÉDIO"
-                            />
-                            <FormControlLabel
-                              value="SUPERIOR"
-                              control={<Radio />}
-                              label="SUPERIOR"
-                            />
-                          </RadioGroup>
-                        </FormControl>
-                      </Col>
+                      {dependent.estudanteDependente === "Sim" && (
+                        <Col>
+                          <FormControl>
+                            <FormLabel id="demo-controlled-radio-buttons-group">
+                              Nível Estudante
+                            </FormLabel>
+                            <RadioGroup
+                              row
+                              aria-labelledby="demo-controlled-radio-buttons-group"
+                              name="nivelEstudanteDependente"
+                              onChange={handleChangeValuesDependent}
+                              value={dependent.nivelEstudanteDependente || ""}
+                            >
+                              <FormControlLabel
+                                value="FUNDAMENTAL"
+                                control={<Radio />}
+                                label="FUNDAMENTAL"
+                              />
+                              <FormControlLabel
+                                value="MÉDIO"
+                                control={<Radio />}
+                                label="MÉDIO"
+                              />
+                              <FormControlLabel
+                                value="SUPERIOR"
+                                control={<Radio />}
+                                label="SUPERIOR"
+                              />
+                            </RadioGroup>
+                          </FormControl>
+                        </Col>
+                      )}
                     </Row>
                     {/* Plano Saude IF YES */}
-                    <Row>
-                      <Form.Group className="mb-3">
-                        <TextField
-                          variant="outlined"
-                          label="Especificar Plano Saúde"
-                          className="w-100"
-                          name="especPlanSaudDependente"
-                          onChange={handleChangeValuesDependent}
-                          value={dependent.especPlanSaudDependente || ""}
-                        />
-                      </Form.Group>
-                    </Row>
+                    {dependent.planoSaudeDependente === "Sim" && (
+                      <Row>
+                        <Form.Group className="mb-3">
+                          <TextField
+                            variant="outlined"
+                            label="Especificar Plano Saúde"
+                            className="w-100"
+                            name="especPlanSaudDependente"
+                            onChange={handleChangeValuesDependent}
+                            value={dependent.especPlanSaudDependente || ""}
+                          />
+                        </Form.Group>
+                      </Row>
+                    )}
+
                     <Row xs={1} md={2} lg={3}>
                       <Col>
                         <Form.Group className="mb-3">
@@ -756,8 +770,13 @@ const ReqInclusaoDep = () => {
                       <Col>
                         <Form.Group className="mb-3">
                           <Row md={1} lg={2}>
-                            <Col lg={3} className="d-flex align-items-center m-0 p-0 text-end">
-                              <FormLabel className="d-flex align-items-center text-end" >Data de Nascimento</FormLabel>
+                            <Col
+                              lg={3}
+                              className="d-flex align-items-center m-0 p-0 text-end"
+                            >
+                              <FormLabel className="d-flex align-items-center text-end">
+                                Data de Nascimento
+                              </FormLabel>
                             </Col>
                             <Col lg={9}>
                               <TextField

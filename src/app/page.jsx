@@ -331,7 +331,7 @@ export default function Home() {
                       aria-describedby={3}
                       // className="w-25"
                       variant="contained"
-                      onClick={() => alert("going route")}
+                      // onClick={() => alert("going route")}
                     >
                       <Link
                         style={{ color: "white", textDecoration: "none" }}
@@ -346,7 +346,7 @@ export default function Home() {
                       aria-describedby={3}
                       // className="w-25"
                       variant="contained"
-                      onClick={() => alert("going route")}
+                      // onClick={() => alert("going route")}
                     >
                       <Link
                         style={{ color: "white", textDecoration: "none" }}
@@ -404,12 +404,12 @@ export default function Home() {
                       aria-describedby={3}
                       // className="w-25"
                       variant="contained"
-                      onClick={() => alert("Req Exc")}
+                      // onClick={() => alert("Req Exc")}
                     >
                       <Link
                         style={{ color: "white", textDecoration: "none" }}
                         href={
-                          "/formDestProcCur/reqFeitProcCur/reqDivIntProcCur"
+                          "formDestMil/reqFeitMil/reqExc"
                         }
                       >
                         REQUERIMENTO DE EXCLUSÃO
@@ -420,7 +420,7 @@ export default function Home() {
                       aria-describedby={3}
                       // className="w-25"
                       variant="contained"
-                      onClick={() => alert("Impost Rend")}
+                      // onClick={() => alert("Impost Rend")}
                     >
                       <Link
                         style={{ color: "white", textDecoration: "none" }}
@@ -434,7 +434,7 @@ export default function Home() {
                       aria-describedby={3}
                       // className="w-25"
                       variant="contained"
-                      onClick={() => alert("in Contri")}
+                      // onClick={() => alert("in Contri")}
                     >
                       <Link
                         style={{ color: "white", textDecoration: "none" }}
@@ -448,7 +448,7 @@ export default function Home() {
                       aria-describedby={3}
                       // className="w-25"
                       variant="contained"
-                      onClick={() => alert("ultima")}
+                      // onClick={() => alert("ultima")}
                     >
                       <Link
                         style={{ color: "white", textDecoration: "none" }}
@@ -474,9 +474,9 @@ export default function Home() {
                       aria-describedby={3}
                       // className="w-25"
                       variant="contained"
-                      onClick={() =>
-                        alert("DECLARAÇÃO DE DEPENDÊNCIA ECONÔMICA")
-                      }
+                      // onClick={() =>
+                      //   alert("DECLARAÇÃO DE DEPENDÊNCIA ECONÔMICA")
+                      // }
                     >
                       <Link
                         style={{ color: "white", textDecoration: "none" }}
