@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import DecDependEconPdf from "../pdf/DecDependEconPdf";
+import DecDependEconPdf from "../pdf/TesteReqRevalCartFunPDF";
 import {
   Box,
   Button,

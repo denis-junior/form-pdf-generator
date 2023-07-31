@@ -9,6 +9,7 @@ import {
   FormControl,
   FormControlLabel,
   FormLabel,
+  Icon,
   Paper,
   Radio,
   RadioGroup,
@@ -24,6 +25,8 @@ import {
 import { Col, Form, Row } from "react-bootstrap";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Cancel, Delete, Person } from "@mui/icons-material";
+import ReqRevalCartFunPDF from "./pdf/ReqRevalCartFunPDF";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 const ReqRevalCartFun = () => {
   // changeTabs
   const [value, setValue] = useState("1");
@@ -65,7 +68,8 @@ const ReqRevalCartFun = () => {
   // send All
   const handleSubmit = () => {
     setPrincipal({ ...principal, dependents });
-    console.log(principal);
+    console.log("DJKSFJKDS")
+    console.log({ ...principal, dependents });
   };
 
   return (
@@ -596,9 +600,28 @@ const ReqRevalCartFun = () => {
 
             {(dependents.length > 0 || noDependents === true) && (
               <div className="d-flex justify-content-center mb-2">
-                <Button variant="contained" onClick={handleSubmit}>
-                  Gerar Requerimento
+                <Button
+                  variant="contained"
+                 
+                  // onClick={handleSubmit}
+                >
+                  <PDFDownloadLink
+                    className="d-flex align-items-center text-white"
+                    style={{textDecoration: "none"}}
+                    document={<ReqRevalCartFunPDF data={{ ...principal, dependents }} />}
+                  >
+                    <p className="m-0 p-0">Gerar Requerimento</p>
+                  </PDFDownloadLink>
                 </Button>
+                {/* <Button
+                  variant="primary"
+                  size="sm"
+                  className="d-flex align-items-center h-100"
+                  onClick={handleSubmit}
+                >
+                  Gerar Requerimento
+                </Button> */}
+                
               </div>
             )}
           </Card>
