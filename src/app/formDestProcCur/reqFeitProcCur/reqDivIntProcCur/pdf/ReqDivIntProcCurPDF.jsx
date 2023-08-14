@@ -137,7 +137,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     textAlign: "center",
-    
   },
   footerLaws: {
     position: "absolute",
@@ -151,11 +150,10 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     // justifyContent: "space-between",
     textAlign: "left",
-    
   },
 });
 
-const ReqRevalCartFunPDF = ({ data }) => {
+const ReqDivIntProcCurPDF = ({ data }) => {
   return (
     <Document>
       <Page style={styles.body} size={"A4"} orientation="portrait">
@@ -175,14 +173,14 @@ const ReqRevalCartFunPDF = ({ data }) => {
           </View>
         </View>
         <View style={styles.headerLine} />
+
         <View style={styles.titleBox}>
-          <Text style={styles.title1}>
-            REQUERIMENTO DE REVALIDAÇÃO DO CARTÃO FUNSAU
-          </Text>
+          <Text style={styles.title1}>REQUERIMENTOS DIVERSOS</Text>
           <Text style={styles.title2}>
-            DESTINADO À(AO) PROCURADOR (A) OU CURADOR(A)
+            DESTINADO À(AO) PROCURADOR(A) OU CURADOR(A)
           </Text>
         </View>
+
         <View style={styles.mrDiretor}>
           <Text style={styles.mrDiretorText}>
             Sr. Diretor do Fundo de Saúde da PMPA,
@@ -191,155 +189,94 @@ const ReqRevalCartFunPDF = ({ data }) => {
 
         <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
           <Text style={styles.defaultText}>
-            Eu, <Text style={{ fontWeight: "700" }}>{data.nomeProcurador}</Text>
-            , Carteira de Identidade nº{" "}
-            <Text style={{ fontWeight: "700" }}>{data.rgProcurador}</Text>, CPF
-            nº: <Text style={{ fontWeight: "700" }}>{data.cpfProcurador}</Text>,
-            telefone{" "}
-            <Text style={{ fontWeight: "700" }}>{data.telProcurador}</Text>,
-            neste ato representando como: ( ) PROCURADOR(A) OU ( ) CURADOR(A), do(a) militar estadual,{" "}
-            <Text style={{ fontWeight: "700" }}>{data.postGradMilitar}</Text>,{" "}
-            <Text style={{ fontWeight: "700" }}>{data.nomeMilitar}</Text>,
-            Carteira Identidade nº:{" "}
-            <Text style={{ fontWeight: "700" }}>{data.rgMilitar}</Text>,
-            Matrícula nº{" "}
-            <Text style={{ fontWeight: "700" }}>{data.matriculaMilitar}</Text>,
-            Nome de guerra:{" "}
-            <Text style={{ fontWeight: "700" }}>{data.nomeGuerraMilitar}</Text>;
-            pertencente à unidade militar:{" "}
-            <Text style={{ fontWeight: "700" }}>{data.unidMilitar}</Text>;
-            residente e domiciliado à:{" "}
-            <Text style={{ fontWeight: "700" }}>{data.enderecoMilitar}</Text>;
-            nº <Text style={{ fontWeight: "700" }}>{data.numEndMilitar}</Text>;
-            complemento:{" "}
-            <Text style={{ fontWeight: "700" }}>{data.compEndMilitar}</Text>;
-            bairro:
-            <Text style={{ fontWeight: "700" }}>{data.bairroEndMilitar}</Text>;
-            município:{" "}
-            <Text style={{ fontWeight: "700" }}>{data.municipEndMilitar}</Text>;
-            Estado:
-            <Text style={{ fontWeight: "700" }}>{data.estEndMilitar}</Text>; CEP
-            nº <Text style={{ fontWeight: "700" }}>{data.cepMilitar}</Text>;
-            telefone fixo:
-            <Text style={{ fontWeight: "700" }}>{data.telFixoMilitar}</Text>;
-            telefone móvel:{" "}
-            <Text style={{ fontWeight: "700" }}>{data.telMovelMilitar}</Text>;
-            vem muito respeitosamente requerer à V. S.ª, a
+            Eu,{" "}
             <Text style={{ fontWeight: "700" }}>
-              {" "}
-              REVALIDAÇÃO DO CARTÃO DO(S) DEPENDENTE(S)
+              {data?.nomeProc || "NOME PROCURADOR"}
             </Text>
-            , conforme relacionado abaixo, para fins de acesso aos benefícios
-            disponibilizados pelo FUNSAU:
+            , Carteira de Identidade nº{" "}
+            <Text style={{ fontWeight: "700" }}>
+              {data?.rgProc || "RG PROCURADOR"}
+            </Text>
+            , CPF nº:{" "}
+            <Text style={{ fontWeight: "700" }}>
+              {data?.cpfProc || "CPF PROC"}
+            </Text>
+            , telefone{" "}
+            <Text style={{ fontWeight: "700" }}>
+              {data?.telProc || "TEL PROC"}
+            </Text>
+            , neste ato representando como: ( ) PROCURADOR(A) OU ( ) CURADOR(A),
+             do(a) militar estadual,{" "}
+            <Text style={{ fontWeight: "700" }}>
+              {data?.postGradMil || "Posto Graduação"}
+            </Text>
+            ,{" "}
+            <Text style={{ fontWeight: "700" }}>
+              {data?.nomeMil || "Nome Militar"}
+            </Text>
+            , Carteira Identidade nº:{" "}
+            <Text style={{ fontWeight: "700" }}>
+              {data?.rgMil || "RG MILITAR"}
+            </Text>
+            , Matrícula nº{" "}
+            <Text style={{ fontWeight: "700" }}>
+              {data?.numMatMil || "Matricula Militar"}
+            </Text>
+            , Nome de guerra:{" "}
+            <Text style={{ fontWeight: "700" }}>
+              {data?.nomeGuerraMil || "NOME GUERRA MILITAR"}
+            </Text>
+            ; pertencente à unidade militar:{" "}
+            <Text style={{ fontWeight: "700" }}>
+              {data?.unidMil || "UNID MILITAR"}
+            </Text>
+            ; residente e domiciliado à:{" "}
+            <Text style={{ fontWeight: "700" }}>
+              {data?.numEndMil || "ENDERECO MILITAR"}
+            </Text>
+            ; nº{" "}
+            <Text style={{ fontWeight: "700" }}>
+              {data?.numEndMilitar || "NUM"}
+            </Text>
+            ; complemento:{" "}
+            <Text style={{ fontWeight: "700" }}>
+              {data?.compEndMil || "COMPLEMENTO ENDERECO"}
+            </Text>
+            ; bairro:
+            <Text style={{ fontWeight: "700" }}>
+              {data?.bairroMil || "BAIRRO MILITAR"}
+            </Text>
+            ; município:{" "}
+            <Text style={{ fontWeight: "700" }}>
+              {data?.municMil || "MUNICIPIO"}
+            </Text>
+            ; Estado:
+            <Text style={{ fontWeight: "700" }}>
+              {data?.estMil || "ESTADO"}
+            </Text>
+            ; CEP nº{" "}
+            <Text style={{ fontWeight: "700" }}>
+              {data?.cepMil || "89238-93"}
+            </Text>
+            ; telefone fixo:
+            <Text style={{ fontWeight: "700" }}>
+              {data?.telFixMil || "Tel Fixo"}
+            </Text>
+            ; telefone móvel:{" "}
+            <Text style={{ fontWeight: "700" }}>
+              {data?.telMovMil || "Tel Movel"}
+            </Text>
+            ; vem muito respeitosamente requerer à V. S.ª, que seja
+            <Text style={{ fontWeight: "700", textDecoration: "underline" }}>
+              {" "}
+              CONCEBIDO:
+            </Text>
+            <Text style={{ fontWeight: "700" }}>
+            {" "}{data?.queSejConMil ||"Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia, aliquid. Ea aperiam esse unde, eveniet deserunt voluptas reprehenderit sunt tempore, explicabo fugiat cumque vero alias similique qui repudiandae iure repellat!" }
+            </Text>
           </Text>
         </View>
-        <View style={styles.headerTable}>
-          <Text
-            style={{
-              fontWeight: "700",
-              fontFamily: "Open Sans",
-              padding: 5,
-              width: "10%",
-            }}
-          >
-            QT
-          </Text>
-          <Text
-            style={{
-              borderLeft: 1,
-              fontWeight: "700",
-              fontFamily: "Open Sans",
-              padding: 5,
-              width: "100%",
-            }}
-          >
-            NOME COMPLETO
-          </Text>
-          <Text
-            style={{
-              borderLeft: 1,
-              fontWeight: "700",
-              fontFamily: "Open Sans",
-              padding: 5,
-              width: "50%",
-            }}
-          >
-            PARENTESCO
-          </Text>
-          <Text
-            style={{
-              borderLeft: 1,
-              fontWeight: "700",
-              fontFamily: "Open Sans",
-              padding: 5,
-              width: "30%",
-            }}
-          >
-            IDADE
-          </Text>
-          <Text
-            style={{
-              borderLeft: 1,
-              fontWeight: "700",
-              fontFamily: "Open Sans",
-              padding: 5,
-              width: "20%",
-            }}
-          >
-            PCD
-          </Text>
-        </View>
-        {data.dependents?.length > 0 &&
-          data.dependents?.map((dependent, key) => {
-            return (
-              <View style={styles.bodyTable} key={key}>
-                <Text style={{ padding: 5, fontSize: 10, width: "10%" }}>
-                  {key + 1}
-                </Text>
-                <Text
-                  style={{
-                    borderLeft: 1,
-                    padding: 5,
-                    fontSize: 10,
-                    width: "100%",
-                    flexWrap: "wrap",
-                  }}
-                >
-                  {dependent.nomeDependente}
-                </Text>
-                <Text
-                  style={{
-                    borderLeft: 1,
-                    padding: 5,
-                    fontSize: 10,
-                    width: "50%",
-                  }}
-                >
-                  {dependent.parentescoDependente}
-                </Text>
-                <Text
-                  style={{
-                    borderLeft: 1,
-                    padding: 5,
-                    fontSize: 10,
-                    width: "30%",
-                  }}
-                >
-                  {dependent.idadeDependente}
-                </Text>
-                <Text
-                  style={{
-                    borderLeft: 1,
-                    padding: 5,
-                    fontSize: 10,
-                    width: "20%",
-                  }}
-                >
-                  {dependent.pcdDependente}
-                </Text>
-              </View>
-            );
-          })}
+
         <View
           style={{
             marginTop: 30,
@@ -369,7 +306,7 @@ const ReqRevalCartFunPDF = ({ data }) => {
         </View>
 
         <View style={styles.footerSignature}>
-          <View style={{justifyContent: "center", alignItems: "center"}}>
+          <View style={{ justifyContent: "center", alignItems: "center" }}>
             <Text style={{ fontSize: 10 }}>
               ____________________________________
             </Text>
@@ -378,7 +315,7 @@ const ReqRevalCartFunPDF = ({ data }) => {
               (assinatura conforme identidade)
             </Text>
           </View>
-          <View style={{justifyContent: "center", alignItems: "center"}}>
+          <View style={{ justifyContent: "center", alignItems: "center" }}>
             <Text style={{ fontSize: 10 }}>
               ____________________________________
             </Text>
@@ -388,25 +325,24 @@ const ReqRevalCartFunPDF = ({ data }) => {
         </View>
 
         <View style={styles.footerLaws}>
-          <Text style={{ fontSize: 10}}>
+          <Text style={{ fontSize: 10 }}>
             1 - Art. 4º da LC nº 142/2021 – Sistema de Proteção Social dos
             Militares do Estado do Pará
           </Text>
           <Text style={{ fontSize: 10 }}>2 - Pessoa com Deficiência.</Text>
         </View>
         <View style={styles.footer}>
-          <Text style={{ fontSize: 10}}>
-          Av. Alm. Barroso, 527, entre Almirante Barroso e Trav.Curuzu - São Brás, Belém - PA, 66093-020
+          <Text style={{ fontSize: 10 }}>
+            Av. Alm. Barroso, 527, entre Almirante Barroso e Trav.Curuzu - São
+            Brás, Belém - PA, 66093-020
           </Text>
-          <Text style={{ fontSize: 10}}>
-          Contatos: (91) 3210-2838 – E-mail: funsau.cadastro@gmail.com
+          <Text style={{ fontSize: 10 }}>
+            Contatos: (91) 3210-2838 – E-mail: funsau.cadastro@gmail.com
           </Text>
-         
         </View>
-        
       </Page>
     </Document>
   );
 };
 
-export default ReqRevalCartFunPDF;
+export default ReqDivIntProcCurPDF;

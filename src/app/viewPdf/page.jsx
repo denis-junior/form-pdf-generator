@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import ReqRevalCartFunPDF from "../formDestProcCur/decFeitProcCur/pdf/TesteReqRevalCartFunPDF";
 
 import dynamic from "next/dynamic";
+import ReqDivIntProcCurPDF from "../formDestProcCur/reqFeitProcCur/reqDivIntProcCur/pdf/ReqDivIntProcCurPDF";
 
 const PDFViewer = dynamic(
   () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
@@ -13,7 +13,7 @@ const PDFViewer = dynamic(
 const ViewPdf = () => {
   return (
     <PDFViewer style={{ width: "100vw", height: "100vh" }}>
-      <ReqRevalCartFunPDF />
+      <ReqDivIntProcCurPDF />
     </PDFViewer>
   );
 };

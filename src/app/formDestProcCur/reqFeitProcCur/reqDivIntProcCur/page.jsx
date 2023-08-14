@@ -1,20 +1,31 @@
 "use client";
 
 import { Card, TextField } from "@mui/material";
-import React from "react";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import React, { useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
+import ReqDivIntProcCurPDF from "./pdf/ReqDivIntProcCurPDF";
 
 const ReqDivIntProcCur = () => {
+  const [principal, setPrincipal] = useState({});
+
+  const handleChangeValuesPrincipal = (event) => {
+    const { name, value } = event.target;
+    console.log("name ", event.target.name);
+    console.log("value ", event.target.value);
+    setPrincipal({ ...principal, [name]: value });
+  };
+
   return (
     <div
       className="d-flex w-100 align-items-center justify-content-center p-2"
-      style={{ backgroundColor: "red" }}
+      // style={{ backgroundColor: "red" }}
     >
       <Card variant="outlined" className="p-3 w-75">
         <Form>
           <Row xs={2}>
             <Col xs={6} md={3} lg={1}>
-              <h6>Militar</h6>
+              <h6>Procurador/Curador</h6>
             </Col>
             <Col xs={6} md={8} lg={10}>
               <hr />
@@ -23,10 +34,11 @@ const ReqDivIntProcCur = () => {
           <Row>
             <Col>
               <Form.Group className="mb-3">
-                {/* <Form.Label>Email address</Form.Label> */}
-
                 <TextField
                   label="Nome Completo"
+                  name="nomeProc"
+                  value={principal.nomeProc || ""}
+                  onChange={handleChangeValuesPrincipal}
                   variant="outlined"
                   className="w-100"
                 />
@@ -36,44 +48,44 @@ const ReqDivIntProcCur = () => {
           <Row xs={1} md={2} lg={4}>
             <Col>
               <Form.Group className="mb-3">
-                {/* <Form.Label>Email address</Form.Label> */}
-
-                <TextField label="RG" variant="outlined" className="w-100" />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group className="mb-3">
-                {/* <Form.Label>Email address</Form.Label> */}
-
-                <TextField label="CPF" variant="outlined" className="w-100" />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Form.Group className="mb-3">
-                {/* <Form.Label>Email address</Form.Label> */}
-
                 <TextField
-                  label="Telefone"
+                  label="RG"
                   variant="outlined"
                   className="w-100"
+                  name="rgProc"
+                  value={principal.rgProc || ""}
+                  onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
             </Col>
             <Col>
               <Form.Group className="mb-3">
-                {/* <Form.Label>Email address</Form.Label> */}
-
                 <TextField
-                  label="Posto Graduação"
+                  label="CPF"
                   variant="outlined"
                   className="w-100"
+                  name="cpfProc"
+                  value={principal.cpfProc || ""}
+                  onChange={handleChangeValuesPrincipal}
+                />
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group className="mb-3">
+                <TextField
+                  label="Telefone"
+                  variant="outlined"
+                  className="w-100"
+                  name="telProc"
+                  value={principal.telProc || ""}
+                  onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
             </Col>
           </Row>
           <Row xs={2}>
             <Col xs={6} md={3} lg={2}>
-              <h6>Procurador/Curador</h6>
+              <h6>Militar</h6>
             </Col>
             <Col xs={6} md={8} lg={10}>
               <hr />
@@ -83,9 +95,12 @@ const ReqDivIntProcCur = () => {
             <Form.Group className="mb-3">
               {/* <Form.Label>Email address</Form.Label> */}
               <TextField
-                label="Nome Procurador / Curador"
+                label="Nome Do Militar"
                 variant="outlined"
                 className="w-100"
+                name="nomeMil"
+                value={principal.nomeMil || ""}
+                onChange={handleChangeValuesPrincipal}
               />
             </Form.Group>
           </Row>
@@ -95,42 +110,60 @@ const ReqDivIntProcCur = () => {
                 {/* <Form.Label>Email address</Form.Label> */}
 
                 <TextField
-                  label="RG Procurador / Curador"
+                  label="Posto Graduação"
                   variant="outlined"
                   className="w-100"
+                  name="postGradMil"
+                  value={principal.postGradMil || ""}
+                  onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
             </Col>
             <Col>
               <Form.Group className="mb-3">
-                {/* <Form.Label>Email address</Form.Label> */}
-
+                <TextField
+                  label="RG do Militar"
+                  variant="outlined"
+                  className="w-100"
+                  name="rgMil"
+                  value={principal.rgMil || ""}
+                  onChange={handleChangeValuesPrincipal}
+                />
+              </Form.Group>
+            </Col>
+            <Col>
+              <Form.Group className="mb-3">
                 <TextField
                   label="Nº da Matrícula"
                   variant="outlined"
                   className="w-100"
+                  name="numMatMil"
+                  value={principal.numMatMil || ""}
+                  onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
             </Col>
             <Col>
               <Form.Group className="mb-3">
-                {/* <Form.Label>Email address</Form.Label> */}
-
                 <TextField
                   label="Nome de Guerra"
                   variant="outlined"
                   className="w-100"
+                  name="nomeGuerraMil"
+                  value={principal.nomeGuerraMil || ""}
+                  onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
             </Col>
             <Col>
               <Form.Group className="mb-3">
-                {/* <Form.Label>Email address</Form.Label> */}
-
                 <TextField
                   label="Unidade Militar"
                   variant="outlined"
                   className="w-100"
+                  name="unidMil"
+                  value={principal.unidMil || ""}
+                  onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
             </Col>
@@ -138,23 +171,25 @@ const ReqDivIntProcCur = () => {
           <Row xs={1} md={2}>
             <Col>
               <Form.Group className="mb-3">
-                {/* <Form.Label>Email address</Form.Label> */}
-
                 <TextField
                   label="Endereço"
                   variant="outlined"
                   className="w-100"
+                  name="endMil"
+                  value={principal.endMil || ""}
+                  onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
             </Col>
             <Col>
               <Form.Group className="mb-3">
-                {/* <Form.Label>Email address</Form.Label> */}
-
                 <TextField
                   label="Complemento Endereço"
                   variant="outlined"
                   className="w-100"
+                  name="compEndMil"
+                  value={principal.compEndMil || ""}
+                  onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
             </Col>
@@ -163,33 +198,39 @@ const ReqDivIntProcCur = () => {
           <Row xs={1} md={2} lg={3}>
             <Col>
               <Form.Group className="mb-3">
-                {/* <Form.Label>Email address</Form.Label> */}
                 <TextField
                   label="Nº Endereço"
                   variant="outlined"
                   className="w-100"
+                  name="numEndMil"
+                  value={principal.numEndMil || ""}
+                  onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
             </Col>
 
             <Col>
               <Form.Group className="mb-3">
-                {/* <Form.Label>Email address</Form.Label> */}
                 <TextField
                   label="Bairro Endereço"
                   variant="outlined"
                   className="w-100"
+                  name="bairroMil"
+                  value={principal.bairroMil || ""}
+                  onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
             </Col>
 
             <Col>
               <Form.Group className="mb-3">
-                {/* <Form.Label>Email address</Form.Label> */}
                 <TextField
                   label="Município Endereço"
                   variant="outlined"
                   className="w-100"
+                  name="municMil"
+                  value={principal.municMil || ""}
+                  onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
             </Col>
@@ -198,65 +239,83 @@ const ReqDivIntProcCur = () => {
           <Row xs={1} md={3} lg={4}>
             <Col>
               <Form.Group className="mb-3">
-                {/* <Form.Label>Email address</Form.Label> */}
-
                 <TextField
                   label="Estado Endereço"
                   variant="outlined"
                   className="w-100"
+                  name="estMil"
+                  value={principal.estMil || ""}
+                  onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
             </Col>
 
             <Col>
               <Form.Group className="mb-3">
-                {/* <Form.Label>Email address</Form.Label> */}
-
                 <TextField
                   label="CEP Endereço"
                   variant="outlined"
                   className="w-100"
+                  name="cepMil"
+                  value={principal.cepMil || ""}
+                  onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
             </Col>
 
             <Col>
               <Form.Group className="mb-3">
-                {/* <Form.Label>Email address</Form.Label> */}
-
                 <TextField
                   label="Telefone Fixo"
                   variant="outlined"
                   className="w-100"
+                  name="telFixMil"
+                  value={principal.telFixMil || ""}
+                  onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
             </Col>
 
             <Col>
               <Form.Group className="mb-3">
-                {/* <Form.Label>Email address</Form.Label> */}
-
                 <TextField
                   label="Telefone Móvel"
                   variant="outlined"
                   className="w-100"
+                  name="telMovMil"
+                  value={principal.telMovMil || ""}
+                  onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
             </Col>
           </Row>
 
           <Form.Group className="mb-3">
-            {/* <Form.Label>Email address</Form.Label> */}
-
             <TextField
-              label="que seja CONCEDIDO"
+              label="que seja concebido"
               variant="outlined"
               className="w-100"
+              name="queSejConMil"
+              value={principal.queSejConMil || ""}
+              onChange={handleChangeValuesPrincipal}
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          {/* <Button variant="primary" onClick={()=>console.log(principal)}>
             Gerar Requerimento
+          </Button> */}
+          <Button
+            variant="primary"
+
+            // onClick={handleSubmit}
+          >
+            <PDFDownloadLink
+              className="d-flex align-items-center text-white"
+              style={{ textDecoration: "none" }}
+              document={<ReqDivIntProcCurPDF data={{ ...principal }} />}
+            >
+              <p className="m-0 p-0">Gerar Requerimento</p>
+            </PDFDownloadLink>
           </Button>
         </Form>
       </Card>
