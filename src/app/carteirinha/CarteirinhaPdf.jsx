@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Canvas,
   Document,
@@ -8,9 +10,6 @@ import {
   Text,
   View,
 } from "@react-pdf/renderer";
-import { createCanvas } from "canvas";
-import JsBarcode from "jsbarcode";
-import Barcode from "react-barcode";
 import { brasaoFunsauBase64, brasaoPMBase64 } from "../utils/images";
 
 const CarteirinhaPdf = () => {
@@ -27,11 +26,6 @@ const CarteirinhaPdf = () => {
     ],
   });
 
-  const generateBarcode = (value) => {
-    const canvas = createCanvas();
-    JsBarcode(canvas, value);
-    return canvas.toDataURL();
-  };
   const styles = StyleSheet.create({
     body: {
       paddingTop: 30,

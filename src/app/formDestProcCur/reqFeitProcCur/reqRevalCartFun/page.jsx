@@ -274,7 +274,7 @@ const ReqRevalCartFun = () => {
                     {/* <Form.Label>Email address</Form.Label> */}
 
                     <TextField
-                      label="Complemento Endereço"
+                      label="Complemento do Endereço"
                       variant="outlined"
                       className="w-100"
                       name="compEndMilitar"
@@ -290,7 +290,7 @@ const ReqRevalCartFun = () => {
                   <Form.Group className="mb-3">
                     {/* <Form.Label>Email address</Form.Label> */}
                     <TextField
-                      label="Nº Endereço"
+                      label="Nº do Endereço"
                       variant="outlined"
                       className="w-100"
                       name="numEndMilitar"
@@ -304,7 +304,7 @@ const ReqRevalCartFun = () => {
                   <Form.Group className="mb-3">
                     {/* <Form.Label>Email address</Form.Label> */}
                     <TextField
-                      label="Bairro Endereço"
+                      label="Bairro"
                       variant="outlined"
                       className="w-100"
                       name="bairroEndMilitar"
@@ -318,7 +318,7 @@ const ReqRevalCartFun = () => {
                   <Form.Group className="mb-3">
                     {/* <Form.Label>Email address</Form.Label> */}
                     <TextField
-                      label="Município Endereço"
+                      label="Município"
                       variant="outlined"
                       className="w-100"
                       name="municipEndMilitar"
@@ -335,7 +335,7 @@ const ReqRevalCartFun = () => {
                     {/* <Form.Label>Email address</Form.Label> */}
 
                     <TextField
-                      label="Estado Endereço"
+                      label="Estado"
                       variant="outlined"
                       className="w-100"
                       name="estEndMilitar"
@@ -350,7 +350,7 @@ const ReqRevalCartFun = () => {
                     {/* <Form.Label>Email address</Form.Label> */}
 
                     <TextField
-                      label="CEP Endereço"
+                      label="CEP"
                       variant="outlined"
                       className="w-100"
                       name="cepMilitar"
@@ -390,19 +390,6 @@ const ReqRevalCartFun = () => {
                   </Form.Group>
                 </Col>
               </Row>
-
-              <Form.Group className="mb-3">
-                {/* <Form.Label>Email address</Form.Label> */}
-
-                <TextField
-                  label="que seja CONCEDIDO"
-                  variant="outlined"
-                  className="w-100"
-                  name="concebMilitar"
-                  value={principal.concebMilitar || ""}
-                  onChange={handleChangeValuesPrincipal}
-                />
-              </Form.Group>
 
               <Button variant="contained" onClick={() => setValue("2")}>
                 Próximo
