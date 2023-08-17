@@ -6,7 +6,7 @@ import { Button, Col, Form, Row } from "react-bootstrap";
 import ReqIncMilEstPDF from "./pdf/ReqIncMilEstPDF";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 
-const reqIncMilEst = () => {
+const ReqIncMilEst = () => {
   const [principal, setPrincipal] = useState({});
 
   const handleChangeValuesPrincipal = (event) => {
@@ -345,7 +345,7 @@ const reqIncMilEst = () => {
             <PDFDownloadLink
               className="d-flex align-items-center text-white"
               style={{ textDecoration: "none" }}
-              document={<ReqIncMilEstPDF data={{ ...principal }} />}
+              document={<RtPDF data={{ ...principal }} />}
             >
               <p className="m-0 p-0">Gerar Requerimento</p>
             </PDFDownloadLink>
@@ -357,4 +357,4 @@ const reqIncMilEst = () => {
   );
 };
 
-export default reqIncMilEst;
+export default ReqIncMilEst;

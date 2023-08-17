@@ -1,13 +1,18 @@
 "use client";
 
-import {Button, Card, TextField } from "@mui/material";
+import { Button, Card, TextField } from "@mui/material";
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import ReqDivIntProcCurPDF from "./pdf/ReqDivIntProcCurPDF";
 
 const ReqDivIntProcCur = () => {
   const [principal, setPrincipal] = useState({});
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const handleChangeValuesPrincipal = (event) => {
     const { name, value } = event.target;
@@ -309,13 +314,15 @@ const ReqDivIntProcCur = () => {
 
             // onClick={handleSubmit}
           >
-            <PDFDownloadLink
-              className="d-flex align-items-center text-white"
-              style={{ textDecoration: "none" }}
-              document={<ReqDivIntProcCurPDF data={{ ...principal }} />}
-            >
-              <p className="m-0 p-0">Gerar Requerimento</p>
-            </PDFDownloadLink>
+            {isClient ? (
+              <PDFDownloadLink
+                className="d-flex align-items-center text-white"
+                style={{ textDecoration: "none" }}
+                document={<ReqDivIntProcCurPDF data={{ ...principal }} />}
+              >
+                <p className="m-0 p-0">Gerar Requerimento</p>
+              </PDFDownloadLink>
+            ) : null}
           </Button>
         </Form>
       </Card>
