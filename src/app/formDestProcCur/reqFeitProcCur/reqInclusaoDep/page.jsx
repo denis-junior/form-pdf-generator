@@ -113,8 +113,8 @@ const ReqInclusaoDep = () => {
                       label="Nome Completo"
                       variant="outlined"
                       className="w-100"
-                      name="nomeProcurador"
-                      value={principal.nomeProcurador || ""}
+                      name="nomeProc"
+                      value={principal.nomeProc || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -128,8 +128,8 @@ const ReqInclusaoDep = () => {
                       label="RG"
                       variant="outlined"
                       className="w-100"
-                      name="rgProcurador"
-                      value={principal.rgProcurador || ""}
+                      name="rgProc"
+                      value={principal.rgProc || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -142,8 +142,8 @@ const ReqInclusaoDep = () => {
                       label="CPF"
                       variant="outlined"
                       className="w-100"
-                      name="cpfProcurador"
-                      value={principal.cpfProcurador || ""}
+                      name="cpfProc"
+                      value={principal.cpfProc || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -156,9 +156,10 @@ const ReqInclusaoDep = () => {
                       label="Telefone Celular"
                       variant="outlined"
                       className="w-100"
-                      name="telCelProcurador"
-                      value={principal.telCelProcurador || ""}
+                      name="telProc"
+                      value={principal.telProc || ""}
                       onChange={handleChangeValuesPrincipal}
+                      // FALTA MUDAR NOMES
                     />
                   </Form.Group>
                 </Col>
