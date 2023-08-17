@@ -1,9 +1,9 @@
 "use client";
 
-import { Card, TextField } from "@mui/material";
+import {Button, Card, TextField } from "@mui/material";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import React, { useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Col, Form, Row } from "react-bootstrap";
 import ReqDivIntProcCurPDF from "./pdf/ReqDivIntProcCurPDF";
 
 const ReqDivIntProcCur = () => {
@@ -305,7 +305,7 @@ const ReqDivIntProcCur = () => {
             Gerar Requerimento
           </Button> */}
           <Button
-            variant="primary"
+            variant="contained"
 
             // onClick={handleSubmit}
           >
