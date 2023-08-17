@@ -1,13 +1,18 @@
 "use client";
 
 import { Card, TextField } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import ReqIncMilEstPDF from "./pdf/ReqIncMilEstPDF";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 
 const ReqIncMilEst = () => {
   const [principal, setPrincipal] = useState({});
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(()=>{
+    setIsClient(true)
+  },[])
 
   const handleChangeValuesPrincipal = (event) => {
     const { name, value } = event.target;
@@ -342,13 +347,17 @@ const ReqIncMilEst = () => {
 
             // onClick={handleSubmit}
           >
+            {
+              isClient ?
             <PDFDownloadLink
               className="d-flex align-items-center text-white"
               style={{ textDecoration: "none" }}
-              document={<RtPDF data={{ ...principal }} />}
+              document={<ReqIncMilEstPDF data={{ ...principal }} />}
             >
               <p className="m-0 p-0">Gerar Requerimento</p>
             </PDFDownloadLink>
+            : null
+            }
           </Button>
 
         </Form>
