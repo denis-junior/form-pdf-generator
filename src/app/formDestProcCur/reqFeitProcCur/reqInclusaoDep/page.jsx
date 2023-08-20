@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   Box,
@@ -24,10 +24,12 @@ import {
 import { Col, Form, Row } from "react-bootstrap";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Cancel, Delete, Person } from "@mui/icons-material";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import ReqInclusaoDepPDF from "./pdf/ReqInclusaoDepPDF";
 
 const ReqInclusaoDep = () => {
   // changeTabs
-  const [value, setValue] = useState("2");
+  const [value, setValue] = useState("1");
 
   // handlePrincipal
   const [principal, setPrincipal] = useState({});
@@ -44,6 +46,12 @@ const ReqInclusaoDep = () => {
   const [isStudent, setIsStudent] = useState(false);
   // Plano Saude if yes
   const [isHealthPlan, setIsHealthPlan] = useState(false);
+
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const handleChangeValuesPrincipal = (event) => {
     const { name, value } = event.target;
@@ -156,8 +164,8 @@ const ReqInclusaoDep = () => {
                       label="Telefone Celular"
                       variant="outlined"
                       className="w-100"
-                      name="telProc"
-                      value={principal.telProc || ""}
+                      name="telMovProc"
+                      value={principal.telMovProc || ""}
                       onChange={handleChangeValuesPrincipal}
                       // FALTA MUDAR NOMES
                     />
@@ -171,8 +179,8 @@ const ReqInclusaoDep = () => {
                       label="Telefone Fixo"
                       variant="outlined"
                       className="w-100"
-                      name="telFixProcurador"
-                      value={principal.telFixProcurador || ""}
+                      name="telFixProc"
+                      value={principal.telFixProc || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -194,8 +202,8 @@ const ReqInclusaoDep = () => {
                       label="Nome Militar"
                       variant="outlined"
                       className="w-100"
-                      name="nomeMilitar"
-                      value={principal.nomeMilitar || ""}
+                      name="nomeMil"
+                      value={principal.nomeMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -208,8 +216,8 @@ const ReqInclusaoDep = () => {
                       label="Unidade Militar"
                       variant="outlined"
                       className="w-100"
-                      name="unidMilitar"
-                      value={principal.unidMilitar || ""}
+                      name="unidMil"
+                      value={principal.unidMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -224,8 +232,8 @@ const ReqInclusaoDep = () => {
                       label="Posto / Graduação"
                       variant="outlined"
                       className="w-100"
-                      name="postGradMilitar"
-                      value={principal.postGradMilitar || ""}
+                      name="postGradMil"
+                      value={principal.postGradMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -238,8 +246,8 @@ const ReqInclusaoDep = () => {
                       label="Nº da Matrícula"
                       variant="outlined"
                       className="w-100"
-                      name="matriculaMilitar"
-                      value={principal.matriculaMilitar || ""}
+                      name="numMatMil"
+                      value={principal.numMatMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -252,8 +260,8 @@ const ReqInclusaoDep = () => {
                       label="RG"
                       variant="outlined"
                       className="w-100"
-                      name="rgMilitar"
-                      value={principal.rgMilitar || ""}
+                      name="rgMil"
+                      value={principal.rgMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -266,8 +274,8 @@ const ReqInclusaoDep = () => {
                       label="Nome de Guerra"
                       variant="outlined"
                       className="w-100"
-                      name="nomeGuerraMilitar"
-                      value={principal.nomeGuerraMilitar || ""}
+                      name="nomeGuerraMil"
+                      value={principal.nomeGuerraMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -282,8 +290,8 @@ const ReqInclusaoDep = () => {
                       label="Endereço"
                       variant="outlined"
                       className="w-100"
-                      name="enderecoMilitar"
-                      value={principal.enderecoMilitar || ""}
+                      name="numEndMil"
+                      value={principal.numEndMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -296,8 +304,8 @@ const ReqInclusaoDep = () => {
                       label="Complemento Endereço"
                       variant="outlined"
                       className="w-100"
-                      name="compEndMilitar"
-                      value={principal.compEndMilitar || ""}
+                      name="compEndMil"
+                      value={principal.compEndMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -326,8 +334,8 @@ const ReqInclusaoDep = () => {
                       label="Bairro Endereço"
                       variant="outlined"
                       className="w-100"
-                      name="bairroEndMilitar"
-                      value={principal.bairroEndMilitar || ""}
+                      name="bairroMil"
+                      value={principal.bairroMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -340,8 +348,8 @@ const ReqInclusaoDep = () => {
                       label="Município Endereço"
                       variant="outlined"
                       className="w-100"
-                      name="municipEndMilitar"
-                      value={principal.municipEndMilitar || ""}
+                      name="municMil"
+                      value={principal.municMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -357,8 +365,8 @@ const ReqInclusaoDep = () => {
                       label="Estado Endereço"
                       variant="outlined"
                       className="w-100"
-                      name="estEndMilitar"
-                      value={principal.estEndMilitar || ""}
+                      name="estMil"
+                      value={principal.estMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -369,11 +377,11 @@ const ReqInclusaoDep = () => {
                     {/* <Form.Label>Email address</Form.Label> */}
 
                     <TextField
-                      label="CEP Endereço"
+                      label="CEP"
                       variant="outlined"
                       className="w-100"
-                      name="cepMilitar"
-                      value={principal.cepMilitar || ""}
+                      name="cepMil"
+                      value={principal.cepMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -387,8 +395,8 @@ const ReqInclusaoDep = () => {
                       label="Telefone Fixo"
                       variant="outlined"
                       className="w-100"
-                      name="telFixoMilitar"
-                      value={principal.telFixoMilitar || ""}
+                      name="telFixMil"
+                      value={principal.telFixMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -402,26 +410,13 @@ const ReqInclusaoDep = () => {
                       label="Telefone Móvel"
                       variant="outlined"
                       className="w-100"
-                      name="telMovelMilitar"
-                      value={principal.telMovelMilitar || ""}
+                      name="telMovMil"
+                      value={principal.telMovMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
                 </Col>
               </Row>
-
-              <Form.Group className="mb-3">
-                {/* <Form.Label>Email address</Form.Label> */}
-
-                <TextField
-                  label="Localidade falar com pessoal"
-                  variant="outlined"
-                  className="w-100"
-                  name="concebMilitar"
-                  value={principal.concebMilitar || ""}
-                  onChange={handleChangeValuesPrincipal}
-                />
-              </Form.Group>
 
               <Button variant="contained" onClick={() => setValue("2")}>
                 Próximo
@@ -474,9 +469,9 @@ const ReqInclusaoDep = () => {
                             label="Nome Completo"
                             variant="outlined"
                             className="w-100"
-                            name="nomeDependente"
                             onChange={handleChangeValuesDependent}
-                            value={dependent.nomeDependente || ""}
+                            name="nomeDep"
+                            value={dependent.nomeDep || ""}
                           />
                         </Form.Group>
                       </Col>
@@ -489,9 +484,9 @@ const ReqInclusaoDep = () => {
                             label="Parentesco"
                             variant="outlined"
                             className="w-100"
-                            name="parentescoDependente"
                             onChange={handleChangeValuesDependent}
-                            value={dependent.parentescoDependente || ""}
+                            name="parentescoDep"
+                            value={dependent.parentescoDep || ""}
                           />
                         </Form.Group>
                       </Col>
@@ -501,9 +496,9 @@ const ReqInclusaoDep = () => {
                             variant="outlined"
                             label="RG"
                             className="w-100"
-                            name="rgDependente"
                             onChange={handleChangeValuesDependent}
-                            value={dependent.rgDependente || ""}
+                            name="rgDep"
+                            value={dependent.rgDep || ""}
                           />
                         </Form.Group>
                       </Col>
@@ -514,9 +509,9 @@ const ReqInclusaoDep = () => {
                             label="CPF"
                             variant="outlined"
                             className="w-100"
-                            name="cpfDependente"
                             onChange={handleChangeValuesDependent}
-                            value={dependent.cpfDependente || ""}
+                            name="cpfDep"
+                            value={dependent.cpfDep || ""}
                           />
                         </Form.Group>
                       </Col>
@@ -531,19 +526,19 @@ const ReqInclusaoDep = () => {
                           <RadioGroup
                             row
                             aria-labelledby="demo-controlled-radio-buttons-group"
-                            name="sexoDependente"
                             onChange={handleChangeValuesDependent}
-                            value={dependent.sexoDependente || ""}
+                            name="sexoDep"
+                            value={dependent.sexoDep || ""}
                           >
                             <FormControlLabel
-                              value="Sim"
+                              value="Masculino"
                               control={<Radio />}
-                              label="Sim"
+                              label="Masculino"
                             />
                             <FormControlLabel
-                              value="Não"
+                              value="Feminino"
                               control={<Radio />}
-                              label="Não"
+                              label="Feminino"
                             />
                           </RadioGroup>
                         </FormControl>
@@ -557,9 +552,9 @@ const ReqInclusaoDep = () => {
                           <RadioGroup
                             row
                             aria-labelledby="demo-controlled-radio-buttons-group"
-                            name="pcdDependente"
+                            name="pcdDep"
                             onChange={handleChangeValuesDependent}
-                            value={dependent.pcdDependente || ""}
+                            value={dependent.pcdDep || ""}
                           >
                             <FormControlLabel
                               value="Sim"
@@ -583,9 +578,9 @@ const ReqInclusaoDep = () => {
                           <RadioGroup
                             row
                             aria-labelledby="demo-controlled-radio-buttons-group"
-                            name="estudanteDependente"
                             onChange={handleChangeValuesDependent}
-                            value={dependent.estudanteDependente || ""}
+                            name="estudanteDep"
+                            value={dependent.estudanteDep || ""}
                           >
                             <FormControlLabel
                               value="Sim"
@@ -609,9 +604,9 @@ const ReqInclusaoDep = () => {
                           <RadioGroup
                             row
                             aria-labelledby="demo-controlled-radio-buttons-group"
-                            name="planoSaudeDependente"
                             onChange={handleChangeValuesDependent}
-                            value={dependent.planoSaudeDependente || ""}
+                            name="planoSaudeDep"
+                            value={dependent.planoSaudeDep || ""}
                           >
                             <FormControlLabel
                               value="Sim"
@@ -629,7 +624,7 @@ const ReqInclusaoDep = () => {
                     </Row>
                     <Row>
                       {/* PCD IF YES*/}
-                      {dependent.pcdDependente === "Sim" && (
+                      {dependent.pcdDep === "Sim" && (
                         <Col>
                           <FormControl>
                             <FormLabel id="demo-controlled-radio-buttons-group">
@@ -638,9 +633,9 @@ const ReqInclusaoDep = () => {
                             <RadioGroup
                               row
                               aria-labelledby="demo-controlled-radio-buttons-group"
-                              name="tipoPcdDependente"
                               onChange={handleChangeValuesDependent}
-                              value={dependent.tipoPcdDependente || ""}
+                              name="tipoPcdDep"
+                              value={dependent.tipoPcdDep || ""}
                             >
                               <FormControlLabel
                                 value="FISICA"
@@ -667,7 +662,7 @@ const ReqInclusaoDep = () => {
                         </Col>
                       )}
                       {/* Estudante IF YES */}
-                      {dependent.estudanteDependente === "Sim" && (
+                      {dependent.estudanteDep === "Sim" && (
                         <Col>
                           <FormControl>
                             <FormLabel id="demo-controlled-radio-buttons-group">
@@ -676,9 +671,9 @@ const ReqInclusaoDep = () => {
                             <RadioGroup
                               row
                               aria-labelledby="demo-controlled-radio-buttons-group"
-                              name="nivelEstudanteDependente"
                               onChange={handleChangeValuesDependent}
-                              value={dependent.nivelEstudanteDependente || ""}
+                              name="nivelEstudanteDep"
+                              value={dependent.nivelEstudanteDep || ""}
                             >
                               <FormControlLabel
                                 value="FUNDAMENTAL"
@@ -701,16 +696,16 @@ const ReqInclusaoDep = () => {
                       )}
                     </Row>
                     {/* Plano Saude IF YES */}
-                    {dependent.planoSaudeDependente === "Sim" && (
+                    {dependent.planoSaudeDep === "Sim" && (
                       <Row>
                         <Form.Group className="mb-3">
                           <TextField
                             variant="outlined"
                             label="Especificar Plano Saúde"
                             className="w-100"
-                            name="especPlanSaudDependente"
+                            name="especPlanSaudDep"
                             onChange={handleChangeValuesDependent}
-                            value={dependent.especPlanSaudDependente || ""}
+                            value={dependent.especPlanSaudDep || ""}
                           />
                         </Form.Group>
                       </Row>
@@ -723,9 +718,9 @@ const ReqInclusaoDep = () => {
                             variant="outlined"
                             label="Estado Civil"
                             className="w-100"
-                            name="estCivilDependente"
                             onChange={handleChangeValuesDependent}
-                            value={dependent.estCivilDependente || ""}
+                            name="estCivilDep"
+                            value={dependent.estCivilDep || ""}
                           />
                         </Form.Group>
                       </Col>
@@ -735,9 +730,9 @@ const ReqInclusaoDep = () => {
                             variant="outlined"
                             label="Telefone"
                             className="w-100"
-                            name="telefoneDependente"
                             onChange={handleChangeValuesDependent}
-                            value={dependent.telefoneDependente || ""}
+                            name="telefoneDep"
+                            value={dependent.telefoneDep || ""}
                           />
                         </Form.Group>
                       </Col>
@@ -747,9 +742,9 @@ const ReqInclusaoDep = () => {
                             variant="outlined"
                             label="Email"
                             className="w-100"
-                            name="emailDependente"
                             onChange={handleChangeValuesDependent}
-                            value={dependent.emailDependente || ""}
+                            name="emailDep"
+                            value={dependent.emailDep || ""}
                           />
                         </Form.Group>
                       </Col>
@@ -762,9 +757,9 @@ const ReqInclusaoDep = () => {
                             variant="outlined"
                             label="Idade"
                             className="w-100"
-                            name="idadeDependente"
                             onChange={handleChangeValuesDependent}
-                            value={dependent.idadeDependente || ""}
+                            name="idadeDep"
+                            value={dependent.idadeDep || ""}
                           />
                         </Form.Group>
                       </Col>
@@ -784,9 +779,9 @@ const ReqInclusaoDep = () => {
                                 variant="outlined"
                                 type="date"
                                 className="w-100"
-                                name="dataNascDependente"
                                 onChange={handleChangeValuesDependent}
-                                value={dependent.dataNascDependente || ""}
+                                name="dataNascDepe"
+                                value={dependent.dataNascDepe || ""}
                               />
                             </Col>
                           </Row>
@@ -800,9 +795,9 @@ const ReqInclusaoDep = () => {
                             variant="outlined"
                             label="Nº do Boletim Geral/Data"
                             className="w-100"
-                            name="emailDependente"
                             onChange={handleChangeValuesDependent}
-                            value={dependent.emailDependente || ""}
+                            name="bolGeralDataDep"
+                            value={dependent.bolGeralDataDep || ""}
                           />
                         </Form.Group>
                       </Col>
@@ -836,9 +831,6 @@ const ReqInclusaoDep = () => {
                           <TableCell component={"th"} align="left">
                             <b>IDADE</b>
                           </TableCell>
-                          <TableCell component={"th"} align="left">
-                            <b>PCD</b>
-                          </TableCell>
                           <TableCell component={"th"} align="center">
                             <b>AÇÕES</b>
                           </TableCell>
@@ -849,10 +841,9 @@ const ReqInclusaoDep = () => {
                           dependents.map((row, key) => (
                             <TableRow key={key}>
                               <TableCell>{Number(key + 1)}</TableCell>
-                              <TableCell>{row.nomeDependente}</TableCell>
-                              <TableCell>{row.parentescoDependente}</TableCell>
-                              <TableCell>{row.idadeDependente}</TableCell>
-                              <TableCell>{row.pcdDependente}</TableCell>
+                              <TableCell>{row.nomeDep}</TableCell>
+                              <TableCell>{row.parentescoDep}</TableCell>
+                              <TableCell>{row.idadeDep}</TableCell>
                               <TableCell className="d-flex justify-content-center text-center">
                                 <Button
                                   color="error"
@@ -883,7 +874,20 @@ const ReqInclusaoDep = () => {
             {(dependents.length > 0 || noDependents === true) && (
               <div className="d-flex justify-content-center mb-2">
                 <Button variant="contained" onClick={handleSubmit}>
-                  Gerar Requerimento
+                  {isClient ? (
+                    <PDFDownloadLink
+                      className="d-flex align-items-center text-white"
+                      style={{ textDecoration: "none" }}
+                      document={
+                        <ReqInclusaoDepPDF
+                          data={{ ...principal, dependents }}
+                        />
+                      }
+                    >
+                      <p className="m-0 p-0">Gerar Requerimento</p>
+                    </PDFDownloadLink>
+                  ) : null}
+                  {/* Gerar Requerimento */}
                 </Button>
               </div>
             )}

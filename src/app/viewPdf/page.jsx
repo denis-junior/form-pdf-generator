@@ -3,7 +3,8 @@
 import React from "react";
 
 import dynamic from "next/dynamic";
-import ReqDivIntProcCurPDF from "../formDestProcCur/reqFeitProcCur/reqDivIntProcCur/pdf/ReqDivIntProcCurPDF";
+import ReqInclusaoDepPDF from "../formDestProcCur/reqFeitProcCur/reqInclusaoDep/pdf/ReqInclusaoDepPDF";
+// import ReqDivIntProcCurPDF from "../formDestProcCur/reqFeitProcCur/reqDivIntProcCur/pdf/ReqDivIntProcCurPDF";
 
 const PDFViewer = dynamic(
   () => import("@react-pdf/renderer").then((mod) => mod.PDFViewer),
@@ -13,7 +14,7 @@ const PDFViewer = dynamic(
 const ViewPdf = () => {
   return (
     <PDFViewer style={{ width: "100vw", height: "100vh" }}>
-      <ReqDivIntProcCurPDF />
+      <ReqInclusaoDepPDF />
     </PDFViewer>
   );
 };

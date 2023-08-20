@@ -156,7 +156,7 @@ const styles = StyleSheet.create({
 const ReqInclusaoDepPDF = ({ data }) => {
   return (
     <Document>
-      <Page style={styles.body} size={"A4"} orientation="portrait">
+      <Page style={styles.body} size={"A4"} orientation="portrait" wrap={true}>
         <View style={styles.header}>
           <View>
             <Image style={styles.headerImg} src={brasaoFunsauBase64} />
@@ -188,7 +188,7 @@ const ReqInclusaoDepPDF = ({ data }) => {
         </View>
 
         <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
-        <Text style={styles.defaultText}>
+          <Text style={styles.defaultText}>
             Eu,{" "}
             <Text style={{ fontWeight: "700" }}>
               {data?.nomeProc || "NOME PROCURADOR"}
@@ -201,12 +201,16 @@ const ReqInclusaoDepPDF = ({ data }) => {
             <Text style={{ fontWeight: "700" }}>
               {data?.cpfProc || "CPF PROC"}
             </Text>
-            , telefone{" "}
+            , telefone móvel{" "}
             <Text style={{ fontWeight: "700" }}>
-              {data?.telProc || "TEL PROC"}
+              {data?.telMovProc || "TEL PROC"}
+            </Text>
+            , telefone fixo{" "}
+            <Text style={{ fontWeight: "700" }}>
+              {data?.telFixProc || "TEL PROC"}
             </Text>
             , neste ato representando como: ( ) PROCURADOR(A) OU ( ) CURADOR(A),
-             do(a) militar estadual,{" "}
+            do(a) militar estadual,{" "}
             <Text style={{ fontWeight: "700" }}>
               {data?.postGradMil || "Posto Graduação"}
             </Text>
@@ -263,8 +267,10 @@ const ReqInclusaoDepPDF = ({ data }) => {
               {data?.telFixMil || "Tel Fixo"}
             </Text>
             telefone móvel:{" "}
-            <Text style={{ fontWeight: "700" }}>{data.telMovMil}</Text>;
-            vem muito respeitosamente requerer à V. S.ª, a
+            <Text style={{ fontWeight: "700" }}>
+              {data?.telMovMil || "Tel Mov"}
+            </Text>
+            ; vem muito respeitosamente requerer à V. S.ª, a
             <Text style={{ fontWeight: "700" }}>
               {" "}
               INCLUSÃO DO(S) DEPENDENTE(S)
@@ -275,121 +281,14 @@ const ReqInclusaoDepPDF = ({ data }) => {
             Estado do Pará, alterada pela Lei Complementar nº 149, de 20 de maio
             de 2022.
           </Text>
-          <Text style={{textIndent: 50}}>
+          <Text style={{ textIndent: 50, ...styles.defaultText }}>
             Outrossim, declaro para os devidos fins, que estou ciente que os
             serviços de saúde disponibilizados pelo FUNSAU somente poderão ser
             utilizados pelo(s) dependente(s), a partir do desconto da 1ª parcela
-            em contracheque e emissão da <Text style={{ fontWeight:700}}>“CARTEIRA DO FUNSAU”</Text>.
+            em contracheque e emissão da{" "}
+            <Text style={{ fontWeight: 700 }}>“CARTEIRA DO FUNSAU”</Text>.
           </Text>
         </View>
-
-        {/* <View style={styles.headerTable}>
-          <Text
-            style={{
-              fontWeight: "700",
-              fontFamily: "Open Sans",
-              padding: 5,
-              width: "10%",
-            }}
-          >
-            QT
-          </Text>
-          <Text
-            style={{
-              borderLeft: 1,
-              fontWeight: "700",
-              fontFamily: "Open Sans",
-              padding: 5,
-              width: "100%",
-            }}
-          >
-            NOME COMPLETO
-          </Text>
-          <Text
-            style={{
-              borderLeft: 1,
-              fontWeight: "700",
-              fontFamily: "Open Sans",
-              padding: 5,
-              width: "50%",
-            }}
-          >
-            PARENTESCO
-          </Text>
-          <Text
-            style={{
-              borderLeft: 1,
-              fontWeight: "700",
-              fontFamily: "Open Sans",
-              padding: 5,
-              width: "30%",
-            }}
-          >
-            IDADE
-          </Text>
-          <Text
-            style={{
-              borderLeft: 1,
-              fontWeight: "700",
-              fontFamily: "Open Sans",
-              padding: 5,
-              width: "20%",
-            }}
-          >
-            PCD
-          </Text>
-        </View>
-        {data.dependents?.length > 0 &&
-          data.dependents?.map((dependent, key) => {
-            return (
-              <View style={styles.bodyTable} key={key}>
-                <Text style={{ padding: 5, fontSize: 10, width: "10%" }}>
-                  {key + 1}
-                </Text>
-                <Text
-                  style={{
-                    borderLeft: 1,
-                    padding: 5,
-                    fontSize: 10,
-                    width: "100%",
-                    flexWrap: "wrap",
-                  }}
-                >
-                  {dependent.nomeDependente}
-                </Text>
-                <Text
-                  style={{
-                    borderLeft: 1,
-                    padding: 5,
-                    fontSize: 10,
-                    width: "50%",
-                  }}
-                >
-                  {dependent.parentescoDependente}
-                </Text>
-                <Text
-                  style={{
-                    borderLeft: 1,
-                    padding: 5,
-                    fontSize: 10,
-                    width: "30%",
-                  }}
-                >
-                  {dependent.idadeDependente}
-                </Text>
-                <Text
-                  style={{
-                    borderLeft: 1,
-                    padding: 5,
-                    fontSize: 10,
-                    width: "20%",
-                  }}
-                >
-                  {dependent.pcdDependente}
-                </Text>
-              </View>
-            );
-          })} */}
 
         <View
           style={{
@@ -445,6 +344,320 @@ const ReqInclusaoDepPDF = ({ data }) => {
           </Text>
           <Text style={{ fontSize: 10 }}>2 - Pessoa com Deficiência.</Text>
         </View>
+        <View style={styles.footer}>
+          <Text style={{ fontSize: 10 }}>
+            Av. Alm. Barroso, 527, entre Almirante Barroso e Trav.Curuzu - São
+            Brás, Belém - PA, 66093-020
+          </Text>
+          <Text style={{ fontSize: 10 }}>
+            Contatos: (91) 3210-2838 – E-mail: funsau.cadastro@gmail.com
+          </Text>
+        </View>
+      </Page>
+      <Page style={styles.body} size={"A4"} orientation="portrait">
+        <View style={styles.header}>
+          <View>
+            <Image style={styles.headerImg} src={brasaoFunsauBase64} />
+          </View>
+          <View style={styles.headerDivText}>
+            <Text style={styles.headerText}>GOVERNO DO ESTADO DO PARÁ</Text>
+            <Text style={styles.headerText}>POLÍCIA MILITAR DO PARÁ</Text>
+            <Text style={styles.headerText}>
+              FUNDO DE SAÚDE DA POLÍCIA MILITAR DO PARÁ FUNSAU-PMPA
+            </Text>
+          </View>
+          <View>
+            <Image style={styles.headerImg} src={brasaoPMBase64} />
+          </View>
+        </View>
+        <View style={styles.headerLine} />
+        <View style={styles.titleBox}>
+          <Text style={styles.title1}>ANEXO DA INCLUSÃO DE DEPEDENTE(S)</Text>
+        </View>
+
+        {/* TABLE */}
+
+        {data.dependents?.length > 0 &&
+          data.dependents?.map((dependent, key) => {
+            return (
+              <View key={key} style={{ marginTop: 10, width: "100%" }}>
+                <View style={{ border: 1, width: "80%" }}>
+                  <Text
+                    style={{
+                      fontSize: 11,
+                      paddingLeft: 5,
+                      fontWeight: "700",
+                      fontFamily: "Open Sans",
+                    }}
+                  >
+                    IDENTIFICAÇÃO DO DEPENDENTE
+                  </Text>
+                </View>
+                <View style={{ border: 1, borderTop: 0, width: "80%" }}>
+                  <Text
+                    style={{
+                      fontSize: 11,
+                      paddingLeft: 5,
+                      fontFamily: "Open Sans",
+                    }}
+                  >
+                    NOME COMPLETO: {dependent.nomeDep?.toUpperCase()}
+                  </Text>
+                </View>
+                <View
+                  style={{
+                    border: 1,
+                    borderTop: 0,
+                    width: "80%",
+                    display: "flex",
+                    flexDirection: "row",
+                  }}
+                >
+                  <View style={{ width: "45%" }}>
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        paddingLeft: 5,
+                        fontFamily: "Open Sans",
+                        borderRight: 1,
+                      }}
+                    >
+                      PARENTESCO: {dependent.parentescoDep?.toUpperCase()}
+                    </Text>
+                  </View>
+                  <View style={{ width: "25%" }}>
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        paddingLeft: 5,
+                        fontFamily: "Open Sans",
+                        borderRight: 1,
+                      }}
+                    >
+                      RG: {dependent.rgDep?.toUpperCase()}
+                    </Text>
+                  </View>
+                  <View style={{ width: "30%" }}>
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        paddingLeft: 5,
+                        fontFamily: "Open Sans",
+                      }}
+                    >
+                      CPF: {dependent.cpfDep?.toUpperCase()}
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    border: 1,
+                    borderTop: 0,
+                    borderBottom: 0,
+                    width: "80%",
+                    display: "flex",
+                    flexDirection: "row",
+                  }}
+                >
+                  <View style={{ width: "30%", borderBottom: 1 }}>
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        paddingLeft: 5,
+                        fontFamily: "Open Sans",
+                        borderRight: 1,
+                      }}
+                    >
+                      SEXO: {dependent.sexoDep?.toUpperCase()}
+                    </Text>
+                  </View>
+                  <View style={{ width: "40%", borderBottom: 1 }}>
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        paddingLeft: 5,
+                        fontFamily: "Open Sans",
+                        borderRight: 1,
+                      }}
+                    >
+                      DATA DE NASC. {dependent.dataNascDepe?.replaceAll('-', '/')}
+                    </Text>
+                  </View>
+                  <View style={{ width: "30%" }}>
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        paddingLeft: 5,
+                        fontFamily: "Open Sans",
+                      }}
+                    >
+                      IDADE: {dependent.idadeDep?.toUpperCase()} ANOS
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    border: 1,
+                    borderTop: 0,
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "row",
+                  }}
+                >
+                  <View style={{ width: "25%", borderRight: 1 }}>
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        paddingLeft: 5,
+                        fontFamily: "Open Sans",
+                      }}
+                    >
+                      ESTADO CIVIL: {dependent.estCivilDep?.toUpperCase()}
+                    </Text>
+                  </View>
+                  <View style={{ width: "31%", borderRight: 1 }}>
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        paddingLeft: 5,
+                        fontFamily: "Open Sans",
+                      }}
+                    >
+                      FONE: {dependent.telefoneDep?.toUpperCase()}
+                    </Text>
+                  </View>
+                  <View style={{ width: "44%" }}>
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        paddingLeft: 5,
+                        fontFamily: "Open Sans",
+                        borderTop: 1,
+                      }}
+                    >
+                      EMAIL: {dependent.emailDep?.toUpperCase()}
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    border: 1,
+                    borderTop: 0,
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "row",
+                  }}
+                >
+                  <View style={{ width: "25%", borderRight: 1 }}>
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        paddingLeft: 5,
+                        fontFamily: "Open Sans",
+                      }}
+                    >
+                      ESTUDANTE: {dependent.estudanteDep?.toUpperCase()}
+                    </Text>
+                  </View>
+                  <View style={{ width: "75%" }}>
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        paddingLeft: 5,
+                        fontFamily: "Open Sans",
+                      }}
+                    >
+                      NÍVEL: {dependent.estudanteDep?.toUpperCase() === "NÃO" ? "NÃO" : dependent.nivelEstudanteDep?.toUpperCase()}
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    border: 1,
+                    borderTop: 0,
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "row",
+                  }}
+                >
+                  <View style={{ width: "25%", borderRight: 1 }}>
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        paddingLeft: 5,
+                        fontFamily: "Open Sans",
+                      }}
+                    >
+                      PCD: {dependent.pcdDep?.toUpperCase()}
+                    </Text>
+                  </View>
+                  <View style={{ width: "75%" }}>
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        paddingLeft: 5,
+                        fontFamily: "Open Sans",
+                      }}
+                    >
+                      ESPECIFICAR: {dependent.pcdDep?.toUpperCase() === "NÃO" ? "NÃO" : dependent.tipoPcdDep?.toUpperCase()}
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    border: 1,
+                    borderTop: 0,
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "row",
+                  }}
+                >
+                  <View style={{ width: "25%", borderRight: 1 }}>
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        paddingLeft: 5,
+                        fontFamily: "Open Sans",
+                      }}
+                    >
+                      PLANO DE SAÚDE: {dependent.planoSaudeDep?.toUpperCase()}
+                    </Text>
+                  </View>
+                  <View style={{ width: "75%" }}>
+                    <Text
+                      style={{
+                        fontSize: 11,
+                        paddingLeft: 5,
+                        fontFamily: "Open Sans",
+                      }}
+                    >
+                      ESPECIFICAR: {dependent.planoSaudeDep?.toUpperCase() === "NÃO" ? "NÃO POSSUI" : dependent.especPlanSaudDep?.toUpperCase()}
+                    </Text>
+                  </View>
+                </View>
+                <View
+                  style={{
+                    border: 1,
+                    borderTop: 0,
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "row",
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: 11,
+                      paddingLeft: 5,
+                      fontFamily: "Open Sans",
+                    }}
+                  >
+                    Nº DO BOLETIM GERAL/DATA: {dependent.parentescoDep?.toUpperCase()}
+                  </Text>
+                </View>
+              </View>
+            );
+          })}
+
         <View style={styles.footer}>
           <Text style={{ fontSize: 10 }}>
             Av. Alm. Barroso, 527, entre Almirante Barroso e Trav.Curuzu - São
