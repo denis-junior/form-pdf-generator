@@ -347,7 +347,7 @@ const CarteirinhaPdf = ({ data }) => {
             }}
           >
             <Text style={{ fontSize: 3, marginTop: -2 }}>
-              JOAO VITOR FARO DA SILVA JUNIOR
+              {data.nomeDep}
             </Text>
           </View>
           {/* subTitle */}
