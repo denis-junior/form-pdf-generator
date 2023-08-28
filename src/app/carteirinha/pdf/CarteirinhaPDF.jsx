@@ -196,7 +196,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const CarteirinhaPdf = ({data}) => {
+const CarteirinhaPdf = ({ data }) => {
   return (
     <Document>
       <Page>
@@ -281,7 +281,9 @@ const CarteirinhaPdf = ({data}) => {
           </View>
           {/* TITLE DEP. */}
           <View style={styles.defaultBlock}>
-            <Text>IDENTIFICAÇÃO DO DEPENDENTE</Text>
+            <Text style={{ fontFamily: "Open Sans", fontWeight: "600" }}>
+              IDENTIFICAÇÃO DO DEPENDENTE
+            </Text>
           </View>
           {/* TITLE DEP. */}
           <View style={styles.defaultBlock}>
