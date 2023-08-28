@@ -9,6 +9,7 @@ import {
   FormControl,
   FormControlLabel,
   FormLabel,
+  Icon,
   Paper,
   Radio,
   RadioGroup,
@@ -23,7 +24,9 @@ import {
 } from "@mui/material";
 import { Col, Form, Row } from "react-bootstrap";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
-import { Cancel, Check, Delete, Person } from "@mui/icons-material";
+import { Cancel, Delete, Person } from "@mui/icons-material";
+import ReqExcPDF from "./pdf/ReqExcPDF";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 const ReqExc = () => {
   // changeTabs
   const [value, setValue] = useState("1");
@@ -65,7 +68,8 @@ const ReqExc = () => {
   // send All
   const handleSubmit = () => {
     setPrincipal({ ...principal, dependents });
-    console.log(principal);
+    console.log("DJKSFJKDS")
+    console.log({ ...principal, dependents });
   };
 
   return (
@@ -203,7 +207,7 @@ const ReqExc = () => {
                     {/* <Form.Label>Email address</Form.Label> */}
 
                     <TextField
-                      label="Complemento Endereço"
+                      label="Complemento do Endereço"
                       variant="outlined"
                       className="w-100"
                       name="compEndMilitar"
@@ -219,7 +223,7 @@ const ReqExc = () => {
                   <Form.Group className="mb-3">
                     {/* <Form.Label>Email address</Form.Label> */}
                     <TextField
-                      label="Nº Endereço"
+                      label="Nº do Endereço"
                       variant="outlined"
                       className="w-100"
                       name="numEndMilitar"
@@ -233,7 +237,7 @@ const ReqExc = () => {
                   <Form.Group className="mb-3">
                     {/* <Form.Label>Email address</Form.Label> */}
                     <TextField
-                      label="Bairro Endereço"
+                      label="Bairro"
                       variant="outlined"
                       className="w-100"
                       name="bairroEndMilitar"
@@ -247,7 +251,7 @@ const ReqExc = () => {
                   <Form.Group className="mb-3">
                     {/* <Form.Label>Email address</Form.Label> */}
                     <TextField
-                      label="Município Endereço"
+                      label="Município"
                       variant="outlined"
                       className="w-100"
                       name="municipEndMilitar"
@@ -264,7 +268,7 @@ const ReqExc = () => {
                     {/* <Form.Label>Email address</Form.Label> */}
 
                     <TextField
-                      label="Estado Endereço"
+                      label="Estado"
                       variant="outlined"
                       className="w-100"
                       name="estEndMilitar"
@@ -279,7 +283,7 @@ const ReqExc = () => {
                     {/* <Form.Label>Email address</Form.Label> */}
 
                     <TextField
-                      label="CEP Endereço"
+                      label="CEP"
                       variant="outlined"
                       className="w-100"
                       name="cepMilitar"
@@ -319,6 +323,7 @@ const ReqExc = () => {
                   </Form.Group>
                 </Col>
               </Row>
+
               <Button variant="contained" onClick={() => setValue("2")}>
                 Próximo
               </Button>
@@ -335,17 +340,15 @@ const ReqExc = () => {
             variant="outlined"
             className="p-3 w-75 d-flex bg-secondary flex-column justify-content-center"
           >
-            <h3 className="text-center">
-              O Militar Quer Excluir Dependentes ?
-            </h3>
+            <h3 className="text-center">O Militar Possui Dependentes ?</h3>
             <div className="d-flex justify-content-center mb-2">
               <Button
                 variant="contained"
                 className="w-auto"
-                endIcon={<Check />}
+                endIcon={<Person />}
                 onClick={() => setAddDependent(true)}
               >
-                Sim
+                Adicionar Dependente
               </Button>
             </div>
             <div className="d-flex justify-content-center mb-5">
@@ -356,7 +359,7 @@ const ReqExc = () => {
                 endIcon={<Cancel />}
                 onClick={() => setNoDependents(true)}
               >
-                Não
+                Não Possui
               </Button>
             </div>
 
@@ -365,8 +368,8 @@ const ReqExc = () => {
               <div className="d-flex justify-content-center mb-5">
                 <Card variant="outlined" className="p-3 w-75">
                   <Form>
-                    <Row xs={1} md={1} lg={2}>
-                      <Col md={8} lg={8}>
+                    <Row>
+                      <Col>
                         <Form.Group className="mb-3">
                           <TextField
                             label="Nome Completo"
@@ -378,7 +381,9 @@ const ReqExc = () => {
                           />
                         </Form.Group>
                       </Col>
-                      <Col md={4} lg={4}>
+                    </Row>
+                    <Row xs={1} md={2} lg={3}>
+                      <Col>
                         <Form.Group className="mb-3">
                           {/* <Form.Label>Email address</Form.Label> */}
                           <TextField
@@ -391,6 +396,7 @@ const ReqExc = () => {
                           />
                         </Form.Group>
                       </Col>
+                      
                     </Row>
 
                     <Button variant="contained" onClick={handleDepSubmit}>
@@ -400,25 +406,6 @@ const ReqExc = () => {
                 </Card>
               </div>
             )}
-            <div className="d-flex justify-content-center mb-5">
-              <Card variant="outlined" className="p-3 w-75">
-                <Form>
-                  <Row>
-                    <Form.Group className="mb-3">
-                      {/* <Form.Label>Email address</Form.Label> */}
-                      <TextField
-                        label="Motivo da Exclusão (Não Obrigatório)"
-                        variant="outlined"
-                        className="w-100"
-                        name="motivoExclusao"
-                        onChange={handleChangeValuesDependent}
-                        value={dependent.motivoExclusao || ""}
-                      />
-                    </Form.Group>
-                  </Row>
-                </Form>
-              </Card>
-            </div>
 
             {/* table */}
             {dependents.length > 0 && (
@@ -437,12 +424,7 @@ const ReqExc = () => {
                           <TableCell component={"th"} align="left">
                             <b>PARENTESCO</b>
                           </TableCell>
-                          <TableCell component={"th"} align="left">
-                            <b>IDADE</b>
-                          </TableCell>
-                          <TableCell component={"th"} align="left">
-                            <b>PCD</b>
-                          </TableCell>
+                          
                           <TableCell component={"th"} align="center">
                             <b>AÇÕES</b>
                           </TableCell>
@@ -455,9 +437,7 @@ const ReqExc = () => {
                               <TableCell>{Number(key + 1)}</TableCell>
                               <TableCell>{row.nomeDependente}</TableCell>
                               <TableCell>{row.parentescoDependente}</TableCell>
-                              <TableCell>{row.idadeDependente}</TableCell>
-                              <TableCell>{row.pcdDependente}</TableCell>
-                              <TableCell className="d-flex justify-content-center text-center">
+                              <TableCell className="d-flex justify-content-center text-center" >
                                 <Button
                                   color="error"
                                   className="d-flex justify-content-center text-center"
@@ -483,11 +463,33 @@ const ReqExc = () => {
                 </Card>
               </div>
             )}
-            <div className="d-flex justify-content-center mb-2">
-              <Button variant="contained" onClick={handleSubmit}>
-                Gerar Requerimento
-              </Button>
-            </div>
+
+            {(dependents.length > 0 || noDependents === true) && (
+              <div className="d-flex justify-content-center mb-2">
+                <Button
+                  variant="contained"
+                 
+                  // onClick={handleSubmit}
+                >
+                  <PDFDownloadLink
+                    className="d-flex align-items-center text-white"
+                    style={{textDecoration: "none"}}
+                    document={<ReqExcPDF data={{ ...principal, dependents }} />}
+                  >
+                    <p className="m-0 p-0">Gerar Requerimento</p>
+                  </PDFDownloadLink>
+                </Button>
+                {/* <Button
+                  variant="primary"
+                  size="sm"
+                  className="d-flex align-items-center h-100"
+                  onClick={handleSubmit}
+                >
+                  Gerar Requerimento
+                </Button> */}
+                
+              </div>
+            )}
           </Card>
         </TabPanel>
       </TabContext>

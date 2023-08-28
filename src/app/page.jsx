@@ -128,7 +128,7 @@ export default function Home() {
                   Abaixo Você Clica no Tipo de Formulário que Precisa Preencher
                 </Typography>
                 <Typography variant="body2" className="text-center">
-                  Navegue Clicando no Botões Abaixo
+                  Navegue Clicando nos Botões Abaixo
                   {/* <br />
                   {'"a benevolent smile"'} */}
                 </Typography>
@@ -162,6 +162,20 @@ export default function Home() {
                   onClick={handleFormDestDep}
                 >
                   Formulário destinado ao dependente
+                </Button>
+
+                <Button
+                  className={style.fixedHeight}
+                  // style={{ height: "7rem" }}
+                  aria-describedby={5}
+                  variant="contained"
+                >
+                  <Link
+                    style={{ color: "white", textDecoration: "none" }}
+                    href={"carteirinha"}
+                  >
+                    CARTEIRINHA
+                  </Link>
                 </Button>
 
                 <Popover
@@ -408,9 +422,7 @@ export default function Home() {
                     >
                       <Link
                         style={{ color: "white", textDecoration: "none" }}
-                        href={
-                          "formDestMil/reqFeitMil/reqExc"
-                        }
+                        href={"formDestMil/reqFeitMil/reqExc"}
                       >
                         REQUERIMENTO DE EXCLUSÃO
                       </Link>

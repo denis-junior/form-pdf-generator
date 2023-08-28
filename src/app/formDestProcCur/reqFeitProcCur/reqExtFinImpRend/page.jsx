@@ -1,11 +1,18 @@
 "use client";
 
-import { Card, TextField } from "@mui/material";
-import React, { useState } from "react";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import {Button, Card, TextField } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Col, Form, Row } from "react-bootstrap";
+import ReqExtFinImpRendPDF from "./pdf/ReqExtFinImpRendPDF";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 
 const ReqExtFinImpRend = () => {
   const [principal, setPrincipal] = useState({});
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const handleChangeValuesPrincipal = (event) => {
     const { name, value } = event.target;
@@ -21,7 +28,7 @@ const ReqExtFinImpRend = () => {
   return (
     <div
       className="d-flex w-100 align-items-center justify-content-center p-2"
-      style={{ backgroundColor: "red" }}
+      // style={{ backgroundColor: "red" }}
     >
       <Card variant="outlined" className="p-3 w-75">
         <Form>
@@ -38,8 +45,8 @@ const ReqExtFinImpRend = () => {
               <Form.Group className="mb-3">
                 <TextField
                   label="Nome Completo"
-                  name="nomeProcurador"
-                  value={principal.nomeProcurador || ""}
+                  name="nomeProc"
+                  value={principal.nomeProc || ""}
                   onChange={handleChangeValuesPrincipal}
                   variant="outlined"
                   className="w-100"
@@ -54,8 +61,8 @@ const ReqExtFinImpRend = () => {
                   label="RG"
                   variant="outlined"
                   className="w-100"
-                  name="rgProcurador"
-                  value={principal.rgProcurador || ""}
+                  name="rgProc"
+                  value={principal.rgProc || ""}
                   onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
@@ -66,8 +73,8 @@ const ReqExtFinImpRend = () => {
                   label="CPF"
                   variant="outlined"
                   className="w-100"
-                  name="cpfProcurador"
-                  value={principal.cpfProcurador || ""}
+                  name="cpfProc"
+                  value={principal.cpfProc || ""}
                   onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
@@ -78,8 +85,8 @@ const ReqExtFinImpRend = () => {
                   label="Telefone"
                   variant="outlined"
                   className="w-100"
-                  name="telefoneProcurador"
-                  value={principal.telefoneProcurador || ""}
+                  name="telProc"
+                  value={principal.telProc || ""}
                   onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
@@ -99,8 +106,8 @@ const ReqExtFinImpRend = () => {
                 label="Nome Completo"
                 variant="outlined"
                 className="w-100"
-                name="nomeMilitar"
-                value={principal.nomeMilitar || ""}
+                name="nomeMil"
+                value={principal.nomeMil || ""}
                 onChange={handleChangeValuesPrincipal}
               />
             </Form.Group>
@@ -112,8 +119,8 @@ const ReqExtFinImpRend = () => {
                   label="Posto ou Graduação"
                   variant="outlined"
                   className="w-100"
-                  name="postGradMilitar"
-                  value={principal.postGradMilitar || ""}
+                  name="postGradMil"
+                  value={principal.postGradMil || ""}
                   onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
@@ -124,8 +131,8 @@ const ReqExtFinImpRend = () => {
                   label="RG do Militar"
                   variant="outlined"
                   className="w-100"
-                  name="rgMilitar"
-                  value={principal.rgMilitar || ""}
+                  name="rgMil"
+                  value={principal.rgMil || ""}
                   onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
@@ -136,8 +143,8 @@ const ReqExtFinImpRend = () => {
                   label="Nº da Matrícula"
                   variant="outlined"
                   className="w-100"
-                  name="numMatriMilitar"
-                  value={principal.numMatriMilitar || ""}
+                  name="numMatMil"
+                  value={principal.numMatMil || ""}
                   onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
@@ -148,8 +155,8 @@ const ReqExtFinImpRend = () => {
                   label="Nome de Guerra"
                   variant="outlined"
                   className="w-100"
-                  name="nomeGuerraMilitar"
-                  value={principal.nomeGuerraMilitar || ""}
+                  name="nomeGuerraMil"
+                  value={principal.nomeGuerraMil || ""}
                   onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
@@ -160,8 +167,8 @@ const ReqExtFinImpRend = () => {
                   label="Unidade Militar"
                   variant="outlined"
                   className="w-100"
-                  name="unidMilitar"
-                  value={principal.unidMilitar || ""}
+                  name="unidMil"
+                  value={principal.unidMil || ""}
                   onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
@@ -174,8 +181,8 @@ const ReqExtFinImpRend = () => {
                   label="Endereço"
                   variant="outlined"
                   className="w-100"
-                  name="endMilitar"
-                  value={principal.endMilitar || ""}
+                  name="endMil"
+                  value={principal.endMil || ""}
                   onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
@@ -186,8 +193,8 @@ const ReqExtFinImpRend = () => {
                   label="Complemento Endereço"
                   variant="outlined"
                   className="w-100"
-                  name="complementEnderecoMilitar"
-                  value={principal.complementEnderecoMilitar || ""}
+                  name="compEndMil"
+                  value={principal.compEndMil || ""}
                   onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
@@ -201,8 +208,8 @@ const ReqExtFinImpRend = () => {
                   label="Nº Endereço"
                   variant="outlined"
                   className="w-100"
-                  name="numEnderecoMilit"
-                  value={principal.numEnderecoMilit || ""}
+                  name="numEndMilitar"
+                  value={principal.numEndMilitar || ""}
                   onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
@@ -214,8 +221,8 @@ const ReqExtFinImpRend = () => {
                   label="Bairro Endereço"
                   variant="outlined"
                   className="w-100"
-                  name="bairroEndMilitar"
-                  value={principal.bairroEndMilitar || ""}
+                  name="bairroMil"
+                  value={principal.bairroMil || ""}
                   onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
@@ -227,8 +234,8 @@ const ReqExtFinImpRend = () => {
                   label="Município Endereço"
                   variant="outlined"
                   className="w-100"
-                  name="municpEndMilitar"
-                  value={principal.municpEndMilitar || ""}
+                  name="municMil"
+                  value={principal.municMil || ""}
                   onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
@@ -242,8 +249,8 @@ const ReqExtFinImpRend = () => {
                   label="Estado Endereço"
                   variant="outlined"
                   className="w-100"
-                  name="estadoMilitar"
-                  value={principal.estadoMilitar || ""}
+                  name="estMil"
+                  value={principal.estMil || ""}
                   onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
@@ -255,8 +262,8 @@ const ReqExtFinImpRend = () => {
                   label="CEP Endereço"
                   variant="outlined"
                   className="w-100"
-                  name="cepMilitar"
-                  value={principal.cepMilitar || ""}
+                  name="cepMil"
+                  value={principal.cepMil || ""}
                   onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
@@ -268,8 +275,8 @@ const ReqExtFinImpRend = () => {
                   label="Telefone Fixo"
                   variant="outlined"
                   className="w-100"
-                  name="telFixMilitar"
-                  value={principal.telFixMilitar || ""}
+                  name="telFixMil"
+                  value={principal.telFixMil || ""}
                   onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
@@ -281,8 +288,8 @@ const ReqExtFinImpRend = () => {
                   label="Telefone Móvel"
                   variant="outlined"
                   className="w-100"
-                  name="telMovelMilitar"
-                  value={principal.telMovelMilitar || ""}
+                  name="telMovMil"
+                  value={principal.telMovMil || ""}
                   onChange={handleChangeValuesPrincipal}
                 />
               </Form.Group>
@@ -291,17 +298,28 @@ const ReqExtFinImpRend = () => {
 
           <Form.Group className="mb-3">
             <TextField
-              label="que seja CONCEDIDO"
+              label="Ano"
               variant="outlined"
               className="w-100"
-              name="queSejConcebMilitar"
-              value={principal.queSejConcebMilitar || ""}
+              name="anoMil"
+              value={principal.anoMil || ""}
               onChange={handleChangeValuesPrincipal}
             />
           </Form.Group>
 
-          <Button variant="primary" onClick={handleSubmit}>
-            Gerar Requerimento
+          <Button
+            variant="contained"
+            // onClick={handleSubmit}
+          >
+            {isClient ? (
+              <PDFDownloadLink
+                className="d-flex align-items-center text-white"
+                style={{ textDecoration: "none" }}
+                document={<ReqExtFinImpRendPDF data={{ ...principal }} />}
+              >
+                <p className="m-0 p-0">Gerar Requerimento</p>
+              </PDFDownloadLink>
+            ) : null}
           </Button>
         </Form>
       </Card>

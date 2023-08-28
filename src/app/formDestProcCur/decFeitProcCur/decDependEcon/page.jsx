@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
-import DecDependEconPdf from "../pdf/TesteReqRevalCartFunPDF";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -25,12 +24,20 @@ import { Col, Form, Row } from "react-bootstrap";
 import { TabContext, TabList, TabPanel } from "@mui/lab";
 import { Cancel, Check, Delete, Person } from "@mui/icons-material";
 import { PDFDownloadLink } from "@react-pdf/renderer";
+import DecDependEconPdf from "./pdf/DecDependEconPdf"
+
 const DecDependEcon = () => {
   // changeTabs
   const [value, setValue] = useState("1");
 
   // handlePrincipal
   const [principal, setPrincipal] = useState({});
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
 
   // handleDependents
   const [dependent, setDependent] = useState({});
@@ -106,8 +113,8 @@ const DecDependEcon = () => {
                       label="Nome Completo"
                       variant="outlined"
                       className="w-100"
-                      name="nomeProcurador"
-                      value={principal.nomeProcurador || ""}
+                      name="nomeProc"
+                      value={principal.nomeProc || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -121,8 +128,8 @@ const DecDependEcon = () => {
                       label="RG"
                       variant="outlined"
                       className="w-100"
-                      name="rgProcurador"
-                      value={principal.rgProcurador || ""}
+                      name="rgProc"
+                      value={principal.rgProc || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -135,8 +142,8 @@ const DecDependEcon = () => {
                       label="CPF"
                       variant="outlined"
                       className="w-100"
-                      name="cpfProcurador"
-                      value={principal.cpfProcurador || ""}
+                      name="cpfProc"
+                      value={principal.cpfProc || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -149,8 +156,8 @@ const DecDependEcon = () => {
                       label="Telefone"
                       variant="outlined"
                       className="w-100"
-                      name="telProcurador"
-                      value={principal.telProcurador || ""}
+                      name="telProc"
+                      value={principal.telProc || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -172,8 +179,8 @@ const DecDependEcon = () => {
                       label="Nome Militar"
                       variant="outlined"
                       className="w-100"
-                      name="nomeMilitar"
-                      value={principal.nomeMilitar || ""}
+                      name="nomeMil"
+                      value={principal.nomeMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -186,8 +193,8 @@ const DecDependEcon = () => {
                       label="Unidade Militar"
                       variant="outlined"
                       className="w-100"
-                      name="unidMilitar"
-                      value={principal.unidMilitar || ""}
+                      name="unidMil"
+                      value={principal.unidMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -202,8 +209,8 @@ const DecDependEcon = () => {
                       label="Posto / Graduação"
                       variant="outlined"
                       className="w-100"
-                      name="postGradMilitar"
-                      value={principal.postGradMilitar || ""}
+                      name="postGradMil"
+                      value={principal.postGradMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -216,8 +223,8 @@ const DecDependEcon = () => {
                       label="Nº da Matrícula"
                       variant="outlined"
                       className="w-100"
-                      name="matriculaMilitar"
-                      value={principal.matriculaMilitar || ""}
+                      name="numMatMil"
+                      value={principal.numMatMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -230,8 +237,8 @@ const DecDependEcon = () => {
                       label="RG"
                       variant="outlined"
                       className="w-100"
-                      name="rgMilitar"
-                      value={principal.rgMilitar || ""}
+                      name="rgMil"
+                      value={principal.rgMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -244,8 +251,8 @@ const DecDependEcon = () => {
                       label="Nome de Guerra"
                       variant="outlined"
                       className="w-100"
-                      name="nomeGuerraMilitar"
-                      value={principal.nomeGuerraMilitar || ""}
+                      name="nomeGuerraMil"
+                      value={principal.nomeGuerraMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -260,8 +267,8 @@ const DecDependEcon = () => {
                       label="Endereço"
                       variant="outlined"
                       className="w-100"
-                      name="enderecoMilitar"
-                      value={principal.enderecoMilitar || ""}
+                      name="endMil"
+                      value={principal.endMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -274,8 +281,8 @@ const DecDependEcon = () => {
                       label="Complemento Endereço"
                       variant="outlined"
                       className="w-100"
-                      name="compEndMilitar"
-                      value={principal.compEndMilitar || ""}
+                      name="compEndMil"
+                      value={principal.compEndMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -304,8 +311,8 @@ const DecDependEcon = () => {
                       label="Bairro Endereço"
                       variant="outlined"
                       className="w-100"
-                      name="bairroEndMilitar"
-                      value={principal.bairroEndMilitar || ""}
+                      name="bairroMil"
+                      value={principal.bairroMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -318,8 +325,8 @@ const DecDependEcon = () => {
                       label="Município Endereço"
                       variant="outlined"
                       className="w-100"
-                      name="municipEndMilitar"
-                      value={principal.municipEndMilitar || ""}
+                      name="municMil"
+                      value={principal.municMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -335,8 +342,8 @@ const DecDependEcon = () => {
                       label="Estado Endereço"
                       variant="outlined"
                       className="w-100"
-                      name="estEndMilitar"
-                      value={principal.estEndMilitar || ""}
+                      name="estMil"
+                      value={principal.estMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -350,8 +357,8 @@ const DecDependEcon = () => {
                       label="CEP Endereço"
                       variant="outlined"
                       className="w-100"
-                      name="cepMilitar"
-                      value={principal.cepMilitar || ""}
+                      name="cepMil"
+                      value={principal.cepMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -365,8 +372,8 @@ const DecDependEcon = () => {
                       label="Telefone Fixo"
                       variant="outlined"
                       className="w-100"
-                      name="telFixoMilitar"
-                      value={principal.telFixoMilitar || ""}
+                      name="telFixoMil"
+                      value={principal.telFixoMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -380,8 +387,8 @@ const DecDependEcon = () => {
                       label="Telefone Móvel"
                       variant="outlined"
                       className="w-100"
-                      name="telMovelMilitar"
-                      value={principal.telMovelMilitar || ""}
+                      name="telMovMil"
+                      value={principal.telMovMil || ""}
                       onChange={handleChangeValuesPrincipal}
                     />
                   </Form.Group>
@@ -403,7 +410,7 @@ const DecDependEcon = () => {
             variant="outlined"
             className="p-3 w-75 d-flex bg-secondary flex-column justify-content-center"
           >
-            <h3 className="text-center">Declaração do Dependente</h3>
+            <h3 className="text-center">Dados do Dependente</h3>
 
             {/* form */}
 
@@ -417,9 +424,9 @@ const DecDependEcon = () => {
                           label="Nome Completo"
                           variant="outlined"
                           className="w-100"
-                          name="nomeDependente"
+                          name="nomeDep"
                           onChange={handleChangeValuesDependent}
-                          value={dependent.nomeDependente || ""}
+                          value={dependent.nomeDep || ""}
                         />
                       </Form.Group>
                     </Col>
@@ -430,9 +437,9 @@ const DecDependEcon = () => {
                           label="Parentesco"
                           variant="outlined"
                           className="w-100"
-                          name="parentescoDependente"
+                          name="grauParentDep"
                           onChange={handleChangeValuesDependent}
-                          value={dependent.parentescoDependente || ""}
+                          value={dependent.grauParentDep || ""}
                         />
                       </Form.Group>
                     </Col>
@@ -457,9 +464,9 @@ const DecDependEcon = () => {
                                 type="date"
                                 variant="outlined"
                                 className="w-100"
-                                name="dataNascimentoDep"
                                 onChange={handleChangeValuesDependent}
-                                value={dependent.dataNascimentoDep || ""}
+                                name="datNascDep"
+                                value={dependent.datNascDep || ""}
                               />
                             </Col>
                           </Row>
@@ -473,9 +480,9 @@ const DecDependEcon = () => {
                           label="Idade"
                           variant="outlined"
                           className="w-100"
-                          name="parentescoDependente"
                           onChange={handleChangeValuesDependent}
-                          value={dependent.parentescoDependente || ""}
+                          name="idadeDep"
+                          value={dependent.idadeDep || ""}
                         />
                       </Form.Group>
                     </Col>
@@ -487,9 +494,9 @@ const DecDependEcon = () => {
                           label="RG"
                           variant="outlined"
                           className="w-100"
-                          name="nomeDependente"
                           onChange={handleChangeValuesDependent}
-                          value={dependent.nomeDependente || ""}
+                          name="rgDep"
+                          value={dependent.rgDep || ""}
                         />
                       </Form.Group>
                     </Col>
@@ -500,9 +507,9 @@ const DecDependEcon = () => {
                           label="CPF"
                           variant="outlined"
                           className="w-100"
-                          name="parentescoDependente"
                           onChange={handleChangeValuesDependent}
-                          value={dependent.parentescoDependente || ""}
+                          name="cpfDep"
+                          value={dependent.cpfDep || ""}
                         />
                       </Form.Group>
                     </Col>
@@ -512,9 +519,9 @@ const DecDependEcon = () => {
                           label="Estado Civil"
                           variant="outlined"
                           className="w-100"
-                          name="nomeDependente"
                           onChange={handleChangeValuesDependent}
-                          value={dependent.nomeDependente || ""}
+                          name="estCivDep"
+                          value={dependent.estCivDep || ""}
                         />
                       </Form.Group>
                     </Col>
@@ -526,15 +533,18 @@ const DecDependEcon = () => {
             <div className="d-flex justify-content-center mb-2">
               <Button
                 variant="contained"
+
                 // onClick={handleSubmit}
               >
-                <PDFDownloadLink
-                  className="d-flex align-items-center h-100 text-white"
-                  document={<DecDependEconPdf />}
-                  fileName="requisitions.pdf"
-                >
-                  <p className={"ms-2"}>Gerar Requerimento Mudei</p>
-                </PDFDownloadLink>
+                {isClient ? (
+                  <PDFDownloadLink
+                    className="d-flex align-items-center text-white"
+                    style={{ textDecoration: "none" }}
+                    document={<DecDependEconPdf data={{ ...principal, dependent }} />}
+                  >
+                    <p className="m-0 p-0">Gerar Requerimento</p>
+                  </PDFDownloadLink>
+                ) : null}
               </Button>
             </div>
           </Card>

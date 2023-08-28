@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const ReqInclusaoDepPDF = ({ data }) => {
+const ReqIncDepPDF = ({ data }) => {
   return (
     <Document>
       <Page style={styles.body} size={"A4"} orientation="portrait" wrap={true}>
@@ -175,10 +175,7 @@ const ReqInclusaoDepPDF = ({ data }) => {
         <View style={styles.headerLine} />
         <View style={styles.titleBox}>
           <Text style={styles.title1}>
-            REQUERIMENTO DE INCLUSÃO DE DEPENDENTE(S)
-          </Text>
-          <Text style={styles.title2}>
-            DESTINADO À(AO) PROCURADOR (A) OU CURADOR(A)
+            REQUERIMENTO DE INCLUSÃO DE DEPENDENTES(S)
           </Text>
         </View>
         <View style={styles.mrDiretor}>
@@ -191,84 +188,63 @@ const ReqInclusaoDepPDF = ({ data }) => {
           <Text style={styles.defaultText}>
             Eu,{" "}
             <Text style={{ fontWeight: "700" }}>
-              {data?.nomeProc || "NOME PROCURADOR"}
-            </Text>
-            , Carteira de Identidade nº{" "}
-            <Text style={{ fontWeight: "700" }}>
-              {data?.rgProc || "RG PROCURADOR"}
-            </Text>
-            , CPF nº:{" "}
-            <Text style={{ fontWeight: "700" }}>
-              {data?.cpfProc || "CPF PROC"}
-            </Text>
-            , telefone móvel{" "}
-            <Text style={{ fontWeight: "700" }}>
-              {data?.telMovProc || "TEL PROC"}
-            </Text>
-            , telefone fixo{" "}
-            <Text style={{ fontWeight: "700" }}>
-              {data?.telFixProc || "TEL PROC"}
-            </Text>
-            , neste ato representando como: ( ) PROCURADOR(A) OU ( ) CURADOR(A),
-            do(a) militar estadual,{" "}
-            <Text style={{ fontWeight: "700" }}>
-              {data?.postGradMil || "Posto Graduação"}
+              {data?.postGradMil || "Não Informado"}
             </Text>
             ,{" "}
             <Text style={{ fontWeight: "700" }}>
-              {data?.nomeMil || "Nome Militar"}
+              {data?.nomeMil || "Não Informado"}
             </Text>
             , Carteira Identidade nº:{" "}
             <Text style={{ fontWeight: "700" }}>
-              {data?.rgMil || "RG MILITAR"}
+              {data?.rgMil || "Não Informado"}
             </Text>
             , Matrícula nº{" "}
             <Text style={{ fontWeight: "700" }}>
-              {data?.numMatMil || "Matricula Militar"}
+              {data?.numMatMil || "Não Informado"}
             </Text>
             , Nome de guerra:{" "}
             <Text style={{ fontWeight: "700" }}>
-              {data?.nomeGuerraMil || "NOME GUERRA MILITAR"}
+              {data?.nomeGuerraMil || "Não Informado"}
             </Text>
             ; pertencente à unidade militar:{" "}
             <Text style={{ fontWeight: "700" }}>
-              {data?.unidMil || "UNID MILITAR"}
+              {data?.unidMil || "Não Informado"}
             </Text>
             ; residente e domiciliado à:{" "}
             <Text style={{ fontWeight: "700" }}>
-              {data?.numEndMil || "ENDERECO MILITAR"}
+              {data?.numEndMil || "Não Informado"}
             </Text>
             ; nº{" "}
             <Text style={{ fontWeight: "700" }}>
-              {data?.numEndMilitar || "NUM"}
+              {data?.numEndMilitar || "Não Informado"}
             </Text>
             ; complemento:{" "}
             <Text style={{ fontWeight: "700" }}>
-              {data?.compEndMil || "COMPLEMENTO ENDERECO"}
+              {data?.compEndMil || "Não Informado"}
             </Text>
             ; bairro:
             <Text style={{ fontWeight: "700" }}>
-              {data?.bairroMil || "BAIRRO MILITAR"}
+              {data?.bairroMil || "Não Informado"}
             </Text>
             ; município:{" "}
             <Text style={{ fontWeight: "700" }}>
-              {data?.municMil || "MUNICIPIO"}
+              {data?.municMil || "Não Informado"}
             </Text>
             ; Estado:
             <Text style={{ fontWeight: "700" }}>
-              {data?.estMil || "ESTADO"}
+              {data?.estMil || "Não Informado"}
             </Text>
             ; CEP nº{" "}
             <Text style={{ fontWeight: "700" }}>
-              {data?.cepMil || "89238-93"}
+              {data?.cepMil || "Não Informado"}
             </Text>
             ; telefone fixo:
             <Text style={{ fontWeight: "700" }}>
-              {data?.telFixMil || "Tel Fixo"}
+              {data?.telFixMil || "Não Informado"}
             </Text>
             telefone móvel:{" "}
             <Text style={{ fontWeight: "700" }}>
-              {data?.telMovMil || "Tel Mov"}
+              {data?.telMovMil || "Não Informado"}
             </Text>
             ; vem muito respeitosamente requerer à V. S.ª, a
             <Text style={{ fontWeight: "700" }}>
@@ -287,6 +263,11 @@ const ReqInclusaoDepPDF = ({ data }) => {
             utilizados pelo(s) dependente(s), a partir do desconto da 1ª parcela
             em contracheque e emissão da{" "}
             <Text style={{ fontWeight: 700 }}>“CARTEIRA DO FUNSAU”</Text>.
+          </Text>
+          <Text style={{ textIndent: 50, ...styles.defaultText }}>
+            Ademais, ressalto que as informações contidas neste requerimento são
+            verdadeiras estando ciente das penalidades por quaisquer informações
+            falsas.
           </Text>
         </View>
 
@@ -480,7 +461,8 @@ const ReqInclusaoDepPDF = ({ data }) => {
                         borderRight: 1,
                       }}
                     >
-                      DATA DE NASC. {dependent.dataNascDepe?.replaceAll('-', '/')}
+                      DATA DE NASC.{" "}
+                      {dependent.dataNascDepe?.replaceAll("-", "/")}
                     </Text>
                   </View>
                   <View style={{ width: "30%" }}>
@@ -567,7 +549,10 @@ const ReqInclusaoDepPDF = ({ data }) => {
                         fontFamily: "Open Sans",
                       }}
                     >
-                      NÍVEL: {dependent.estudanteDep?.toUpperCase() === "NÃO" ? "NÃO" : dependent.nivelEstudanteDep?.toUpperCase()}
+                      NÍVEL:{" "}
+                      {dependent.estudanteDep?.toUpperCase() === "NÃO"
+                        ? "NÃO"
+                        : dependent.nivelEstudanteDep?.toUpperCase()}
                     </Text>
                   </View>
                 </View>
@@ -599,7 +584,10 @@ const ReqInclusaoDepPDF = ({ data }) => {
                         fontFamily: "Open Sans",
                       }}
                     >
-                      ESPECIFICAR: {dependent.pcdDep?.toUpperCase() === "NÃO" ? "NÃO" : dependent.tipoPcdDep?.toUpperCase()}
+                      ESPECIFICAR:{" "}
+                      {dependent.pcdDep?.toUpperCase() === "NÃO"
+                        ? "NÃO"
+                        : dependent.tipoPcdDep?.toUpperCase()}
                     </Text>
                   </View>
                 </View>
@@ -631,7 +619,10 @@ const ReqInclusaoDepPDF = ({ data }) => {
                         fontFamily: "Open Sans",
                       }}
                     >
-                      ESPECIFICAR: {dependent.planoSaudeDep?.toUpperCase() === "NÃO" ? "NÃO POSSUI" : dependent.especPlanSaudDep?.toUpperCase()}
+                      ESPECIFICAR:{" "}
+                      {dependent.planoSaudeDep?.toUpperCase() === "NÃO"
+                        ? "NÃO POSSUI"
+                        : dependent.especPlanSaudDep?.toUpperCase()}
                     </Text>
                   </View>
                 </View>
@@ -651,7 +642,8 @@ const ReqInclusaoDepPDF = ({ data }) => {
                       fontFamily: "Open Sans",
                     }}
                   >
-                    Nº DO BOLETIM GERAL/DATA: {dependent.parentescoDep?.toUpperCase()}
+                    Nº DO BOLETIM GERAL/DATA:{" "}
+                    {dependent.parentescoDep?.toUpperCase()}
                   </Text>
                 </View>
               </View>
@@ -672,4 +664,4 @@ const ReqInclusaoDepPDF = ({ data }) => {
   );
 };
 
-export default ReqInclusaoDepPDF;
+export default ReqIncDepPDF;
